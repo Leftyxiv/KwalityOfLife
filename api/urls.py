@@ -10,5 +10,5 @@ router.register('comment', CommentViewSet)
 router.register('post', PostViewSet)
 
 urlpatterns = [
-    url(r"^api/", include(router.uls))
+    url(r"^api/", include(router.urls))
 ]

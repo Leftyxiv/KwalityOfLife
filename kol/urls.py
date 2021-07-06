@@ -16,14 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-<<<<<<< HEAD
 from api.urls import urlpatterns as api_urls
-=======
 from django.conf import settings
 from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView
->>>>>>> main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,9 +28,6 @@ urlpatterns = [
     path('addpost/', PostFormView.as_view()),
 ]
 
-<<<<<<< HEAD
 urlpatterns += api_urls
-=======
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> main

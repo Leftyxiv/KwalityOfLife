@@ -5,9 +5,14 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
   class Meta:
     model = CustomUser
-    fields = ('username', 'email')
+    fields = ('first_name', 'last_name', 'username', 'email')
 
 class CustomUserChangeForm(UserChangeForm):
   class Meta:
     model = CustomUser
-    fields = ('username', 'email')
+    fields = ('first_name', 'last_name', 'username', 'email')
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=37)
+    password = forms.CharField(widget=forms.PasswordInput)
