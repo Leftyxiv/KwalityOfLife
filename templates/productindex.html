@@ -3,6 +3,7 @@
 {% block content %}
 {% for post in posts %}
   {{ post.title }}
+  <img src="uploads/{{post.product_image}}" />
 {% endfor %}
 
 {% endblock %}
