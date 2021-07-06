@@ -21,6 +21,9 @@ class CreateCommentView(LoginRequiredMixin, View):
                 body = data['body']
             )
             return HttpResponseRedirect(reverse('/'))
+        else:
+            print(form.errors)
+            return HttpResponseRedirect('/')
 
 
 def like_view(request, comment_id):
