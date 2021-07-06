@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # group made apps
     'customuser',
+    'posts',
 ]
 
 MIDDLEWARE = [
