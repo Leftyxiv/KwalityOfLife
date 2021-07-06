@@ -20,14 +20,16 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView
+from posts.views import PostHomeView, PostFormView, post_detail_view
 from customuser.views import add_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', PostHomeView, name='homepage'),
     path('addpost/', PostFormView.as_view()),
-    path('adduser/', add_user)
+    path('adduser/', add_user),
+    path('post/<int:post_id>/', post_detail_view)
+
 ]
 
 urlpatterns += api_urls

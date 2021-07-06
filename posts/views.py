@@ -30,3 +30,7 @@ class PostFormView(View):
       post.save()
       return HttpResponseRedirect('/')
     return HttpResponseRedirect('addpost/')
+
+def post_detail_view(request, post_id, *args, **kwargs):
+  post = Post.objects.get(id=post_id)
+  return render(request, 'postdetail.html',context={'post': post})

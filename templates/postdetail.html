@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+
+{% block content %}
+{{post.title}}
+<br>
+{{ post.user }}
+<br>
+{{ post.created_at }}
+<br>
+{% if post.company_website %}
+{{ post.company_website }}
+{% endif %}
+<br>
+<img src="/uploads/{{post.product_image}}" />
+<br>
+{{ post.description }}
+<br>
+{% endblock %}
