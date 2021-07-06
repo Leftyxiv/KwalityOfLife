@@ -9,5 +9,5 @@ router = routers.DefaultRouter()
 router.register('comment', CommentViewSet)
 
 urlpatterns = [
-    url(r"^api/", include(router.uls))
+    url(r"^api/", include(router.urls))
 ]
