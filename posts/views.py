@@ -18,7 +18,6 @@ class PostFormView(View):
   
   def post(self, request):
     form = PostForm(request.POST, request.FILES)
-    print(form.is_valid())
     if form.is_valid():
       data = form.cleaned_data
       post = Post.objects.create(
@@ -30,6 +29,4 @@ class PostFormView(View):
       )
       post.save()
       return HttpResponseRedirect('/')
-    else:
-      print(form.errors)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('addpost/')
