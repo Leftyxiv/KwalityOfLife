@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'customuser.CustomUser'
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 
 # Application definition
 
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # group made apps
     'customuser',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +61,7 @@ ROOT_URLCONF = 'kol.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
