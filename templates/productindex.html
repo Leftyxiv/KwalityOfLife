@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block content %}
+{% for post in posts %}
+  {{ post.title }}
+  <br>
+  <img src="uploads/{{post.product_image}}" />
+  <br>
+  {{ post.user }}
+  <br>
+  {{ post.description }}
+  <br />
+  <hr />
+{% endfor %}
+
+{% endblock %}

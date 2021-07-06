@@ -16,6 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from api.urls import urlpatterns as api_urls
+from django.conf import settings
+from django.conf.urls.static import static
+
+from posts.views import PostHomeView, PostFormView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', PostHomeView, name='homepage'),
+    path('addpost/', PostFormView.as_view()),
 ]
+
+urlpatterns += api_urls
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
