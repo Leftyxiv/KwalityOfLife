@@ -2,6 +2,10 @@ from django.shortcuts import render
 from .forms import UserCreationForm
 from posts.models import Post
 
+def add_user(request, *args, **kwargs):
+  form = UserCreationForm()
+  return render(request, 'form.html', context={'form': form})
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 
