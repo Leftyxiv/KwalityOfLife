@@ -20,9 +20,11 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView, post_detail_view
+from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view
 from comment.views import CreateCommentView
+
+from .views import error_404, error_500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,11 +38,15 @@ urlpatterns = [
 
     # post views
     path('post/<int:post_id>/', post_detail_view),
+    path('post/<int:post_id>/delete', delete_post),
 
     # comment views
     path('post/<int:post_id>/addcomment', CreateCommentView.as_view())
 
 ]
+
+handler404 = error_404
+handler500 = error_500
 
 urlpatterns += api_urls
 if settings.DEBUG:
