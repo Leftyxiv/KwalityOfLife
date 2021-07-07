@@ -15,6 +15,10 @@
 <br>
 {{ post.description }}
 <br>
+{% if user.is_staff %}
+<a href="/post/{{ post.id }}/delete"><button>Delete</button></a>
+{% endif %}
+<br>
 Add a comment!
 <br>
 {% if user.is_authenticated %}
