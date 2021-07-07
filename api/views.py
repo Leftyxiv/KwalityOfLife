@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.decorators import action
 
 from rest_framework.viewsets import ModelViewSet
 
@@ -12,6 +13,9 @@ class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
 
 
+<<<<<<< HEAD
+=======
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+>>>>>>> main

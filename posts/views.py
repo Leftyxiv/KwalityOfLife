@@ -28,7 +28,8 @@ class PostFormView(View):
         title=data['title'],
         company_website=data['company_website'],
         product_image=data['product_image'],
-        description=data['description']
+        description=data['description'],
+        
       )
       post.save()
       return HttpResponseRedirect('/')
