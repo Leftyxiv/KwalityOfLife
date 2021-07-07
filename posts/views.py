@@ -3,6 +3,8 @@ from django.views import View
 
 from .models import Post
 from .forms import PostForm
+from comment.models import Comment
+from comment.forms import AddComment
 
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
@@ -18,7 +20,6 @@ class PostFormView(View):
   
   def post(self, request):
     form = PostForm(request.POST, request.FILES)
-    print(form.is_valid())
     if form.is_valid():
       data = form.cleaned_data
       post = Post.objects.create(
@@ -30,6 +31,10 @@ class PostFormView(View):
       )
       post.save()
       return HttpResponseRedirect('/')
-    else:
-      print(form.errors)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('addpost/')
+
+def post_detail_view(request, post_id, *args, **kwargs):
+  post = Post.objects.get(id=post_id)
+  comments = Comment.objects.filter(post=post)
+  form = AddComment()
+  return render(request, 'postdetail.html',context={'post': post, 'comments': comments, 'addform': form})

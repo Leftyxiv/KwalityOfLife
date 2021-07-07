@@ -2,13 +2,13 @@
 
 {% block content %}
 {% for post in posts %}
-  {{ post.title }}
+  <a href="post/{{post.id}}/">{{ post.title }}</a>
   <br>
   <img src="uploads/{{post.product_image}}" />
   <br>
-  {{ post.user }}
+  <!-- {{ post.user }}
   <br>
-  {{ post.description }}
+  {{ post.description }} -->
   <br />
   <hr />
 {% endfor %}

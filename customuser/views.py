@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from .forms import UserCreationForm
+
+
+def add_user(request, *args, **kwargs):
+  form = UserCreationForm()
+  return render(request, 'form.html', context={'form': form})
 
 # Create your views here.
 from django.shortcuts import render, HttpResponseRedirect, reverse
@@ -36,26 +42,26 @@ def login_view(request):
     return render(request, "form.html", {'form' : form})
 
 # User Edit View
-def customUserChange_view(request, ticket_id):
-    item = CustomUser.objects.get(id=ticket_id)
+def customUserChange_view(request, *args, **kwargs):
+    item = request.user
 
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST)
+
         if form.is_valid():
             data = form.cleaned_data
-            item.username = data['username']
+            # item.username = data['username']
             item.email = data['email']
             item.first_name = data['first_name']
             item.last_name = data['last_name']
             item.save()
-            return HttpResponseRedirect(reverse('ticket_details', args=(ticket_id,)))
+            # return HttpResponseRedirect('')
 
     form = CustomUserChangeForm(initial={
         'username': item.username,
         'email' : item.email,
         'first_name' : item.first_name,
         'last_name' : item.last_name,
-
 
     })
     return render(request, "form.html", {"form": form})

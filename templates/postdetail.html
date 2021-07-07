@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% block content %}
+{{post.title}}
+<br>
+{{ post.user }}
+<br>
+{{ post.created_at }}
+<br>
+{% if post.company_website %}
+{{ post.company_website }}
+{% endif %}
+<br>
+<img src="/uploads/{{post.product_image}}" />
+<br>
+{{ post.description }}
+<br>
+Add a comment!
+<br>
+{% if user.is_authenticated %}
+<form>
+  {{ addform.as_p }}
+  <input type='submit' />
+</form>
+{% endif %}
+<h3>Comments: </h3>
+{% for comment in comments %}
+{{ comment.user }} - {{ comment.body }}
+{% endfor %}
+<br>
+{% endblock %}

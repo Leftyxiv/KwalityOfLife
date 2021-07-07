@@ -20,12 +20,22 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView
+from posts.views import PostHomeView, PostFormView, post_detail_view
+from customuser.views import customUserCreation_view, login_view, customUserChange_view, loggedOut_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', PostHomeView, name='homepage'),
+    # user views
     path('addpost/', PostFormView.as_view()),
+    path('signup/', customUserCreation_view),
+    path('login/', login_view),
+    path('myaccount/', customUserChange_view),
+    path('logout/', loggedOut_view),
+
+    # post views
+    path('post/<int:post_id>/', post_detail_view)
+
 ]
 
 urlpatterns += api_urls
