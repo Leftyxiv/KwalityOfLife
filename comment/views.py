@@ -5,6 +5,7 @@ from django.views.generic import View
 
 from comment.models import Comment
 from comment.forms import AddComment
+from posts.models import Post
 
 # Create your views here.
 class CreateCommentView(LoginRequiredMixin, View):
@@ -13,17 +14,25 @@ class CreateCommentView(LoginRequiredMixin, View):
         form = AddComment()
         return render(request, 'form.html', {'form': form})
 
-    def post(self, request):
+    def post(self, request, post_id):
+        user = request.user
+        post = Post.objects.get(id=post_id)
         form = AddComment(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             Comment.objects.create(
-                body = data['body']
+                body=data['body'],
+                post=post,
+                user=user
             )
+<<<<<<< HEAD
             return HttpResponseRedirect(reverse('homepage'))
         else:
             print(form.errors)
             return HttpResponseRedirect(reverse('homepage'))
+=======
+            return HttpResponseRedirect(f'/post/{post.id}')
+>>>>>>> main
 
 
 def like_view(request, comment_id):
