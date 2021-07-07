@@ -25,7 +25,7 @@ class CreateCommentView(LoginRequiredMixin, View):
                 post=post,
                 user=user
             )
-            return HttpResponseRedirect(reverse('homepage'))
+            return HttpResponseRedirect(f'/post/{post.id}/')
         else:
             print(form.errors)
             return HttpResponseRedirect(reverse('homepage'))
