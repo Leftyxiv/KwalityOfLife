@@ -7,6 +7,9 @@ from .forms import PostForm
 from comment.models import Comment
 from comment.forms import AddComment
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
 
@@ -14,7 +17,7 @@ def PostHomeView(request, *args, **kwargs):
   posts = Post.objects.all().order_by('created_at').reverse()
   return render(request, 'productindex.html', context={'posts': posts})
 
-class PostFormView(View):
+class PostFormView(LoginRequiredMixin, View):
   def get(self, request):
     form = PostForm()
     return render(request, 'form.html', context={'form': form})
