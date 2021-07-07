@@ -46,7 +46,7 @@ def login_view(request):
             # user = form.save()
             if user: 
                 login(request, user)
-            return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
+                return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
     form = LoginForm()
     return render(request, "form.html", {'form' : form})
 
@@ -81,11 +81,9 @@ class CustomUserChangeView(LoginRequiredMixin, View):
         item = request.user
         
         form = CustomUserChangeForm(initial={
-            'username': item.username,
             'email' : item.email,
             'first_name' : item.first_name,
             'last_name' : item.last_name,
-
         })
         return render(request, "form.html", {"form": form})
 
@@ -97,12 +95,11 @@ class CustomUserChangeView(LoginRequiredMixin, View):
 
             if form.is_valid():
                 data = form.cleaned_data
-                item.username = data['username']
                 item.email = data['email']
                 item.first_name = data['first_name']
                 item.last_name = data['last_name']
                 item.save()
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/myaccount/')
 
 
 # Log out

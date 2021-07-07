@@ -26,8 +26,12 @@ from customuser.views import customUserCreation_view, login_view, customUserChan
 =======
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view
+<<<<<<< HEAD
 >>>>>>> main
 from comment.views import CreateCommentView
+=======
+from comment.views import CreateCommentView, like_view, dislike_view
+>>>>>>> caa5d19df4c73bb2ab26d419d9be1fad45a05728
 
 from .views import error_404, error_500
 
@@ -52,7 +56,9 @@ urlpatterns = [
 
 >>>>>>> main
     # comment views
-    path('post/<int:post_id>/addcomment', CreateCommentView.as_view())
+    path('post/<int:post_id>/addcomment', CreateCommentView.as_view()),
+    path('comment/<int:com_id>/like', like_view),
+    path('comment/<int:com_id>/dislike', dislike_view)
 
 ]
 
