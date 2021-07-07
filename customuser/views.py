@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import View
 
 
 def add_user(request, *args, **kwargs):
@@ -45,29 +47,58 @@ def login_view(request):
     return render(request, "form.html", {'form' : form})
 
 # User Edit View
-def customUserChange_view(request, *args, **kwargs):
-    item = request.user
+# def customUserChange_view(request, *args, **kwargs):
+#     item = request.user
 
-    if request.method == "POST":
-        form = CustomUserChangeForm(request.POST)
+#     if request.method == "POST":
+#         form = CustomUserChangeForm(request.POST)
 
-        if form.is_valid():
-            data = form.cleaned_data
-            # item.username = data['username']
-            item.email = data['email']
-            item.first_name = data['first_name']
-            item.last_name = data['last_name']
-            item.save()
-            # return HttpResponseRedirect('')
+#         if form.is_valid():
+#             data = form.cleaned_data
+#             # item.username = data['username']
+#             item.email = data['email']
+#             item.first_name = data['first_name']
+#             item.last_name = data['last_name']
+#             item.save()
+#             # return HttpResponseRedirect('')
 
-    form = CustomUserChangeForm(initial={
-        'username': item.username,
-        'email' : item.email,
-        'first_name' : item.first_name,
-        'last_name' : item.last_name,
+#     form = CustomUserChangeForm(initial={
+#         'username': item.username,
+#         'email' : item.email,
+#         'first_name' : item.first_name,
+#         'last_name' : item.last_name,
 
-    })
-    return render(request, "form.html", {"form": form})
+#     })
+#     return render(request, "form.html", {"form": form})
+
+
+class CustomUserChangeView(LoginRequiredMixin, View):
+    def get(self, request):
+        item = request.user
+        
+        form = CustomUserChangeForm(initial={
+            'username': item.username,
+            'email' : item.email,
+            'first_name' : item.first_name,
+            'last_name' : item.last_name,
+
+        })
+        return render(request, "form.html", {"form": form})
+
+    def post(self, request):
+        item = request.user
+
+        if request.method == "POST":
+            form = CustomUserChangeForm(request.POST)
+
+            if form.is_valid():
+                data = form.cleaned_data
+                item.username = data['username']
+                item.email = data['email']
+                item.first_name = data['first_name']
+                item.last_name = data['last_name']
+                item.save()
+                return HttpResponseRedirect('/')
 
 
 # Log out
