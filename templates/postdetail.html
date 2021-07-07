@@ -15,4 +15,15 @@
 <br>
 {{ post.description }}
 <br>
+Add a comment!
+<br>
+<form>
+  {{ addform.as_p }}
+  <input type='submit' />
+</form>
+<h3>Comments: </h3>
+{% for comment in comments %}
+{{ comment.user }} - {{ comment.body }}
+{% endfor %}
+<br>
 {% endblock %}
