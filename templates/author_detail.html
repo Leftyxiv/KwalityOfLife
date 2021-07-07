@@ -1,0 +1,11 @@
+<h2>{{ author.first_name }}</h2>
+<h2>{{ author.last_name }}</h2>
+
+<ul>
+    {% for foo in posts %}
+        <li>
+            <a href="/post/{{ foo.id }}">{{ foo.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
