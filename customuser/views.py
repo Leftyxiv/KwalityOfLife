@@ -1,11 +1,6 @@
 from django.shortcuts import render
 from .forms import UserCreationForm
 
-
-def add_user(request, *args, **kwargs):
-  form = UserCreationForm()
-  return render(request, 'form.html', context={'form': form})
-
 # Create your views here.
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
@@ -22,12 +17,13 @@ def customUserCreation_view(request):
             # form.cleaned_data.get('password')
             if data['password1'] != data['password2']:
                 alert('Passwords must match')
+                return HttpResponseRedirect('/signup/')
             else:
                 user = CustomUser.objects.create_user(first_name=data['first_name'], last_name=data['last_name'], username=data['username'], password=data['password1'], email=data['email'])
                 login(request, user)
         return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
-    form =CustomUserCreationForm()
+    form = CustomUserCreationForm()
     return render(request, "form.html", {'form' : form})
 
 # Login

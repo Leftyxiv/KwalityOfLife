@@ -24,6 +24,8 @@ from posts.views import PostHomeView, PostFormView, post_detail_view
 from customuser.views import customUserCreation_view, login_view, customUserChange_view, loggedOut_view
 from comment.views import CreateCommentView
 
+from .views import error_404, error_500
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', PostHomeView, name='homepage'),
@@ -41,6 +43,9 @@ urlpatterns = [
     path('post/<int:post_id>/addcomment', CreateCommentView.as_view())
 
 ]
+
+handler404 = error_404
+handler500 = error_500
 
 urlpatterns += api_urls
 if settings.DEBUG:

@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
+from django.http import Http404
 
 from .models import Post
 from .forms import PostForm
@@ -10,7 +11,7 @@ def redirect(request):
   return request.GET.get('next', reverse('homepage'))
 
 def PostHomeView(request, *args, **kwargs):
-  posts = Post.objects.all()
+  posts = Post.objects.all().order_by('created_at').reverse()
   return render(request, 'productindex.html', context={'posts': posts})
 
 class PostFormView(View):
@@ -34,7 +35,10 @@ class PostFormView(View):
     return HttpResponseRedirect('addpost/')
 
 def post_detail_view(request, post_id, *args, **kwargs):
-  post = Post.objects.get(id=post_id)
+  try:
+    post = Post.objects.get(id=post_id)
+  except Post.DoesNotExist:
+    raise Http404
   comments = Comment.objects.filter(post=post)
   form = AddComment()
   return render(request, 'postdetail.html',context={'post': post, 'comments': comments, 'addform': form})
