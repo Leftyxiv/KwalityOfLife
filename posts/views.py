@@ -8,6 +8,9 @@ from .forms import PostForm
 from comment.models import Comment
 from comment.forms import AddComment
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
 
