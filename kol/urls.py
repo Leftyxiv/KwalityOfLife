@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view
-from comment.views import CreateCommentView
+from comment.views import CreateCommentView, like_view, dislike_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,14 +31,16 @@ urlpatterns = [
     path('addpost/', PostFormView.as_view()),
     path('signup/', customUserCreation_view),
     path('login/', login_view),
-    path('myaccount/', CustomUserChangeView),
+    path('myaccount/', CustomUserChangeView.as_view()),
     path('logout/', loggedOut_view),
 
     # post views
     path('post/<int:post_id>/', post_detail_view),
 
     # comment views
-    path('post/<int:post_id>/addcomment', CreateCommentView.as_view())
+    path('post/<int:post_id>/addcomment', CreateCommentView.as_view()),
+    path('comment/<int:com_id>/like', like_view),
+    path('comment/<int:com_id>/dislike', dislike_view)
 
 ]
 

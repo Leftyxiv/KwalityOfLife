@@ -31,15 +31,15 @@ class CreateCommentView(LoginRequiredMixin, View):
             return HttpResponseRedirect(reverse('homepage'))
 
 
-def like_view(request, comment_id):
-    comment = Comment.objects.get(id=comment_id)
+def like_view(request, com_id):
+    comment = Comment.objects.get(id=com_id)
     comment.likes += 1
     comment.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
-def dislike_view(request, comment_id):
-    comment = Comment.objects.get(id=comment_id)
+def dislike_view(request, com_id):
+    comment = Comment.objects.get(id=com_id)
     comment.dislikes -= 1
     comment.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
