@@ -20,11 +20,22 @@ class CommentSerializer(HyperlinkedModelSerializer):
 
 
 class PostSerializer(HyperlinkedModelSerializer):
-    class meta:
+    class Meta:
         model = Post
         fields = [
             'title',
             'company_website',
             'product_image',
             'description'
+        ]
+
+
+class CustomUserSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'email'
         ]
