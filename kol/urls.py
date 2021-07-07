@@ -31,7 +31,7 @@ urlpatterns = [
     path('addpost/', PostFormView.as_view()),
     path('signup/', customUserCreation_view),
     path('login/', login_view),
-    path('myaccount/', CustomUserChangeView),
+    path('myaccount/', CustomUserChangeView.as_view()),
     path('logout/', loggedOut_view),
 
     # post views
