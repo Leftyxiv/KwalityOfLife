@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view
 from customuser.views import customUserCreation_view, login_view, customUserChange_view, loggedOut_view
+from comment.views import CreateCommentView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,7 +35,10 @@ urlpatterns = [
     path('logout/', loggedOut_view),
 
     # post views
-    path('post/<int:post_id>/', post_detail_view)
+    path('post/<int:post_id>/', post_detail_view),
+
+    # comment views
+    path('post/<int:post_id>/addcomment', CreateCommentView.as_view())
 
 ]
 

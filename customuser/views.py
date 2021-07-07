@@ -20,8 +20,11 @@ def customUserCreation_view(request):
         if form.is_valid():
             data = form.cleaned_data
             # form.cleaned_data.get('password')
-            user = CustomUser.objects.create_user(first_name=data['first_name'], last_name=data['last_name'], username=data['username'], password=data['password'], email=data['email'])
-            login(request, user)
+            if data['password1'] != data['password2']:
+                alert('Passwords must match')
+            else:
+                user = CustomUser.objects.create_user(first_name=data['first_name'], last_name=data['last_name'], username=data['username'], password=data['password1'], email=data['email'])
+                login(request, user)
         return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
     form =CustomUserCreationForm()
@@ -65,9 +68,6 @@ def customUserChange_view(request, *args, **kwargs):
 
     })
     return render(request, "form.html", {"form": form})
-
-
-
 
 
 # Log out

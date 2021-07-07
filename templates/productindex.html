@@ -4,7 +4,7 @@
 {% for post in posts %}
   <a href="post/{{post.id}}/">{{ post.title }}</a>
   <br>
-  <img src="uploads/{{post.product_image}}" />
+  <a href="post/{{post.id}}/"><img src="uploads/{{post.product_image}}" height="200px" width="200px"/></a>
   <br>
   <!-- {{ post.user }}
   <br>
