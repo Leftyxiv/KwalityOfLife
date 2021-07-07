@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view
-from comment.views import CreateCommentView
+from comment.views import CreateCommentView, like_view, dislike_view
 
 from .views import error_404, error_500
 
@@ -41,7 +41,9 @@ urlpatterns = [
     path('post/<int:post_id>/delete', delete_post),
 
     # comment views
-    path('post/<int:post_id>/addcomment', CreateCommentView.as_view())
+    path('post/<int:post_id>/addcomment', CreateCommentView.as_view()),
+    path('comment/<int:com_id>/like', like_view),
+    path('comment/<int:com_id>/dislike', dislike_view)
 
 ]
 
