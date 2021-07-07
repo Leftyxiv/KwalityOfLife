@@ -90,6 +90,7 @@ class CustomUserChangeView(LoginRequiredMixin, View):
                 item.email = data['email']
                 item.first_name = data['first_name']
                 item.last_name = data['last_name']
+                item.avatar = data['avatar']
                 item.save()
                 return HttpResponseRedirect('/myaccount/')
 
