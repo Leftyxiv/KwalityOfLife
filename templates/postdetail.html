@@ -17,10 +17,12 @@
 <br>
 Add a comment!
 <br>
+{% if user.is_authenticated %}
 <form>
   {{ addform.as_p }}
   <input type='submit' />
 </form>
+{% endif %}
 <h3>Comments: </h3>
 {% for comment in comments %}
 {{ comment.user }} - {{ comment.body }}
