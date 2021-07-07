@@ -20,7 +20,7 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView, post_detail_view
+from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view
 from comment.views import CreateCommentView
 
@@ -38,6 +38,7 @@ urlpatterns = [
 
     # post views
     path('post/<int:post_id>/', post_detail_view),
+    path('post/<int:post_id>/delete', delete_post),
 
     # comment views
     path('post/<int:post_id>/addcomment', CreateCommentView.as_view())

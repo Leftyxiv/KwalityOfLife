@@ -34,6 +34,7 @@ class PostFormView(View):
       return HttpResponseRedirect('/')
     return HttpResponseRedirect('addpost/')
 
+# FIX 404 HERE
 def post_detail_view(request, post_id, *args, **kwargs):
   try:
     post = Post.objects.get(id=post_id)
@@ -42,3 +43,13 @@ def post_detail_view(request, post_id, *args, **kwargs):
   comments = Comment.objects.filter(post=post)
   form = AddComment()
   return render(request, 'postdetail.html',context={'post': post, 'comments': comments, 'addform': form})
+
+# FIX 404 HERE
+def delete_post(request, post_id, *args, **kwargs):
+  post = Post.objects.get(id=post_id)
+  try:
+    post = Post.objects.get(id=post_id)
+  except Post.DoesNotExist:
+    raise Http404
+  post.delete()
+  return HttpResponseRedirect('/')
