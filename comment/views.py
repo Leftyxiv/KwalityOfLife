@@ -7,7 +7,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from posts.models import Post
 
-# Create your views here.
+
 class CreateCommentView(LoginRequiredMixin, View):
     def get(self, request):
         template_name = 'form.html'
