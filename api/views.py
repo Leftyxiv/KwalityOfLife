@@ -3,8 +3,9 @@ from rest_framework.decorators import action
 
 from rest_framework.viewsets import ModelViewSet
 
-from api.serializers import CommentSerializer
+from api.serializers import CommentSerializer, PostSerializer
 from comment.models import Comment
+from posts.models import Post
 
 # Create your views here.
 class CommentViewSet(ModelViewSet):
@@ -12,3 +13,9 @@ class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
 
 
+<<<<<<< HEAD
+=======
+class PostViewSet(ModelViewSet):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+>>>>>>> main

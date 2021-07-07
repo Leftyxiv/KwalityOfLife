@@ -7,7 +7,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from posts.models import Post
 
-# Create your views here.
+
 class CreateCommentView(LoginRequiredMixin, View):
     def get(self, request):
         template_name = 'form.html'
@@ -25,7 +25,10 @@ class CreateCommentView(LoginRequiredMixin, View):
                 post=post,
                 user=user
             )
-            return HttpResponseRedirect(f'/post/{post.id}')
+            return HttpResponseRedirect(f'/post/{post.id}/')
+        else:
+            print(form.errors)
+            return HttpResponseRedirect(reverse('homepage'))
 
 
 def like_view(request, comment_id):

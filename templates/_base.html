@@ -12,8 +12,8 @@
     <!-- <a href="">Detail</a>b -->
     <a href="/">Home</a>
     <a href="/addpost/">Create Post</a>
-    <a href="/myaccount/">My Account</a>
     {% if user.is_authenticated %}
+    <a href="/myaccount/">My Account</a>
     <a href="/logout/">Logout</a>
     {% else %}
     <a href="/signup/">Sign Up!</a>
