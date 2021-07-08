@@ -6,6 +6,7 @@ from django.views.generic import View
 from comment.models import Comment
 from comment.forms import AddComment
 from posts.models import Post
+from notifications.models import Notifications
 
 
 class CreateCommentView(LoginRequiredMixin, View):
@@ -20,6 +21,12 @@ class CreateCommentView(LoginRequiredMixin, View):
         form = AddComment(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            if '@' in data['content']:
+                pattern = '@(\w+)'
+                result = re.findall(pattern, data['content'])[0]
+                user_to_notify = TwitterUser.objects.get(username=result)
+                if user_to_notify:
+                    Notifications.objects.create(content=data['content'], user=user_to_notify)
             Comment.objects.create(
                 body=data['body'],
                 post=post,
