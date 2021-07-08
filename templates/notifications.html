@@ -6,7 +6,7 @@
 <ul>
   {% for notification in new_notifications %}
   <li style='color: green;'>
-    {{ notification.content }}
+    {{ notification.text }}
   </li>
   {% endfor %}
 </ul>
@@ -14,7 +14,7 @@
 <ul>
   {% for notification in old_notifications %}
   <li style='color: grey;'>
-    {{ notification.content }}
+    {{ notification.text }}
   </li>
   {% endfor %}
 </ul>

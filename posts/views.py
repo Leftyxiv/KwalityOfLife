@@ -7,6 +7,7 @@ from .models import Post
 from .forms import PostForm
 from comment.models import Comment
 from comment.forms import AddComment
+from notifications.models import Notifications
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -16,7 +17,15 @@ def redirect(request):
 
 def PostHomeView(request, *args, **kwargs):
   posts = Post.objects.all().order_by('created_at').reverse()
-  return render(request, 'productindex.html', context={'posts': posts})
+  notify = []
+  not_num = ''
+  for notification in Notifications.objects.filter(user=request.user):
+    if notification.read != True:
+      notify.append(notification)
+    if notify:
+      not_num = len(notify)
+      print(not_num)
+  return render(request, 'productindex.html', context={'posts': posts, 'notifications': not_num })
 
 class PostFormView(LoginRequiredMixin, View):
   def get(self, request):
