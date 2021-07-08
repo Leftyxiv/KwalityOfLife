@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.decorators import action
 
 from rest_framework.viewsets import ModelViewSet
 
@@ -21,3 +22,4 @@ class PostViewSet(ModelViewSet):
 class CustomUserViewSet(ModelViewSet):
     serializer_class = CustomUser
     queryset = CustomUser.objects.all()
+

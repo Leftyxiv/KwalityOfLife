@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
 from django.http import Http404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post
 from .forms import PostForm
@@ -31,7 +32,8 @@ class PostFormView(LoginRequiredMixin, View):
         title=data['title'],
         company_website=data['company_website'],
         product_image=data['product_image'],
-        description=data['description']
+        description=data['description'],
+        
       )
       post.save()
       return HttpResponseRedirect('/')

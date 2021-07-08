@@ -21,8 +21,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
-from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view
+from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
+
 from comment.views import CreateCommentView, like_view, dislike_view
+
 
 from .views import error_404, error_500
 
@@ -35,9 +37,12 @@ urlpatterns = [
     path('login/', login_view),
     path('myaccount/', CustomUserChangeView.as_view()),
     path('logout/', loggedOut_view),
+    
 
     # post views
     path('post/<int:post_id>/', post_detail_view),
+    # All Author's posts together
+    path('author/<int:author_id>/', author_detail),
     path('post/<int:post_id>/delete', delete_post),
 
     # comment views

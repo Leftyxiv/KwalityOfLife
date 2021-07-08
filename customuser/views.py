@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .forms import UserCreationForm
+from posts.models import Post
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 
@@ -100,3 +102,8 @@ def loggedOut_view(request):
     logout(request)
     return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
+# user_detail
+def author_detail(request, author_id: int):
+    my_authors = CustomUser.objects.get(id=author_id)
+    author_posts = Post.objects.filter(user=my_authors.id)
+    return render(request, 'author_detail.html', {'author': my_authors, 'posts': author_posts})
