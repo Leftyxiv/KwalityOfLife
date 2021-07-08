@@ -3,6 +3,7 @@
 {% block content %}
 {{post.title}}
 <br>
+<!-- <img src="/uploads/" -->
 {{ post.user }}
 <br>
 {{ post.created_at }}
@@ -30,6 +31,9 @@ Add a comment!
 {% endif %}
 <h3>Comments: </h3>
 {% for comment in comments %}
+{% if comment.user.avatar %}
+<img src="/uploads/{{ comment.user.avatar }}" height="50px" width="50px" />
+{% endif %}
 {{ comment.user }} - {{ comment.body }} <a href="/comment/{{ comment.id }}/like">Like</a>: 
 {{ comment.likes }} <a href="/comment/{{ comment.id }}/dislike">Dislikes</a>: {{ comment.dislikes }}
 {{ comment.created_at }}

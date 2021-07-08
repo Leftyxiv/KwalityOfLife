@@ -85,13 +85,14 @@ class CustomUserChangeView(LoginRequiredMixin, View):
         item = request.user
 
         if request.method == "POST":
-            form = CustomUserChangeForm(request.POST)
+            form = CustomUserChangeForm(request.POST, request.FILES)
 
             if form.is_valid():
                 data = form.cleaned_data
                 item.email = data['email']
                 item.first_name = data['first_name']
                 item.last_name = data['last_name']
+                item.avatar = data['avatar']
                 item.save()
                 return HttpResponseRedirect('/myaccount/')
 

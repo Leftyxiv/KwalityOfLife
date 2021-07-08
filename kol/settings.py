@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = '/login/'
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'comment',
     'customuser',
     'posts',
+    'notifications',
 ]
 
 MIDDLEWARE = [
