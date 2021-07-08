@@ -35,6 +35,9 @@
     form {
       color: white;
     }
+    .navBarColor {
+      color: rebeccapurple;
+    }
     /* CREDIT GOES TO COLORLIB FOR THE 404 TEMPLATE UNDER THIS*/
 * {
   -webkit-box-sizing: border-box;
@@ -138,15 +141,15 @@ body {
   <center>
   <nav>
     <!-- <a href="">Detail</a>b -->
-    <a href="/">Home</a>
-    <a href="/addpost/">Create Post</a>
+    <a href="/" class='navBarColor'>Home</a>
+    <a href="/addpost/" class='navBarColor'>Create Post</a>
     {% if user.is_authenticated %}
-    <a href="/myaccount/">My Account</a>
-    <a href="/notifications/">Notifications</a>
-    <a href="/logout/">Logout</a>
+    <a href="/myaccount/" class='navBarColor'>My Account</a>
+    <a href="/notifications/" class='navBarColor'>Notifications</a>
+    <a href="/logout/" class='navBarColor'>Logout</a>
     {% else %}
-    <a href="/signup/">Sign Up!</a>
-    <a href="/login/">Log In!</a>
+    <a href="/signup/" class='navBarColor'>Sign Up!</a>
+    <a href="/login/" class='navBarColor'>Log In!</a>
     {% endif %}
   </nav>
   </center>
