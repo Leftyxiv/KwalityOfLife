@@ -2,10 +2,13 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
+import re
 
 from comment.models import Comment
 from comment.forms import AddComment
 from posts.models import Post
+from notifications.models import Notifications
+from customuser.models import CustomUser
 
 
 class CreateCommentView(LoginRequiredMixin, View):
@@ -20,6 +23,12 @@ class CreateCommentView(LoginRequiredMixin, View):
         form = AddComment(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            if '@' in data['body']:
+                pattern = '@(\w+)'
+                result = re.findall(pattern, data['body'])[0]
+                user_to_notify = CustomUser.objects.get(username=result)
+                if user_to_notify:
+                    Notifications.objects.create(text=data['body'], user=user_to_notify)
             Comment.objects.create(
                 body=data['body'],
                 post=post,

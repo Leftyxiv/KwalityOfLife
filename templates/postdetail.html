@@ -1,14 +1,15 @@
 {% extends '_base.html' %}
 
 {% block content %}
-{{post.title}}
+<span>{{post.title}}</span>
 <br>
-{{ post.user }}
+<!-- <img src="/uploads/" -->
+<span>{{ post.user }}</span>
 <br>
-{{ post.created_at }}
+<span>{{ post.created_at }}</span>
 <br>
 {% if post.company_website %}
-{{ post.company_website }}
+<span>{{ post.company_website }}</span>
 {% endif %}
 <br>
 <img src="/uploads/{{post.product_image}}" height="200px" width="200px"/>
@@ -19,7 +20,7 @@
 <a href="/post/{{ post.id }}/delete"><button>Delete</button></a>
 {% endif %}
 <br>
-Add a comment!
+<span>Add a comment!</span>
 <br>
 {% if user.is_authenticated %}
 <form method="POST" action="/post/{{ post.id }}/addcomment">
@@ -30,9 +31,12 @@ Add a comment!
 {% endif %}
 <h3>Comments: </h3>
 {% for comment in comments %}
+{% if comment.user.avatar %}
+<span><img src="/uploads/{{ comment.user.avatar }}" height="50px" width="50px" />
+{% endif %}
 {{ comment.user }} - {{ comment.body }} <a href="/comment/{{ comment.id }}/like">Like</a>: 
 {{ comment.likes }} <a href="/comment/{{ comment.id }}/dislike">Dislikes</a>: {{ comment.dislikes }}
-{{ comment.created_at }}
+{{ comment.created_at }} </span>
 <br>
 {% endfor %}
 <br>

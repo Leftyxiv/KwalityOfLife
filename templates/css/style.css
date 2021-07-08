@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-	<title>Kwality of Life</title>
-
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="http://127.0.0.1:8000/uploads/favicon.ico"/>
-	<!-- Custom stlylesheet -->
-	<!-- <link type="text/css" rel="stylesheet" href="/templates/css/style.css" /> -->
-</head>
-<body>
-  <style>
-    a {
-      color: rgb(99, 243, 207);
-      text-decoration: none;
-    }
-    a:hover {
-      color: green;
-    }
-    span {
-      color: white;
-    }
-    h2 {
-      color: white;
-    }
-    h3 {
-      color: white;
-    }
-    form {
-      color: white;
-    }
-    .navBarColor {
-      color: rebeccapurple;
-    }
-    /* CREDIT GOES TO COLORLIB FOR THE 404 TEMPLATE UNDER THIS*/
+/* CREDIT GOES TO COLORLIB FOR THE 404 TEMPLATE */
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -47,7 +7,6 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: rgb(25, 29, 32);
 }
 
 #notfound {
@@ -136,26 +95,3 @@ body {
       font-size: 112px;
     }
 }
-
-  </style>
-  <center>
-  <nav>
-    <!-- <a href="">Detail</a>b -->
-    <a href="/" class='navBarColor'>Home</a>
-    <a href="/addpost/" class='navBarColor'>Create Post</a>
-    {% if user.is_authenticated %}
-    <a href="/myaccount/" class='navBarColor'>My Account</a>
-    <a href="/notifications/" class='navBarColor'>Notifications</a>
-    <a href="/logout/" class='navBarColor'>Logout</a>
-    {% else %}
-    <a href="/signup/" class='navBarColor'>Sign Up!</a>
-    <a href="/login/" class='navBarColor'>Log In!</a>
-    {% endif %}
-  </nav>
-  </center>
-  <center>
-    {% block content %}
-    {% endblock %}
-  </center>
-</body>
-</html>

@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<h1 style='color: rebeccapurple;'>Notifications</h1>
+<h2>Unread Notifications</h2>
+<ul>
+  {% for notification in new_notifications %}
+  <li style='color: green;'>
+    {{ notification.text }}
+  </li>
+  {% endfor %}
+</ul>
+<h2>Read Notifications</h2>
+<ul>
+  {% for notification in old_notifications %}
+  <li style='color: grey;'>
+    {{ notification.text }}
+  </li>
+  {% endfor %}
+</ul>
+
+<span>Go back <a href='/'>home</a> </span>
+{% endblock %}

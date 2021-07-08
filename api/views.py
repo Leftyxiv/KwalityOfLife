@@ -22,3 +22,4 @@ class PostViewSet(ModelViewSet):
 class CustomUserViewSet(ModelViewSet):
     serializer_class = CustomUser
     queryset = CustomUser.objects.all()
+

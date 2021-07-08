@@ -1,6 +1,10 @@
 {% extends '_base.html' %}
 
 {% block content %}
+{% if notifications > 0 %}
+<span>You have {{ notifications }} notifications waiting for you!</span>
+<br />
+{% endif %}
 {% for post in posts %}
   <a href="post/{{post.id}}/">{{ post.title }}</a>
   <br>
