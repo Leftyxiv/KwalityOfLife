@@ -24,7 +24,6 @@ def PostHomeView(request, *args, **kwargs):
       notify.append(notification)
     if notify:
       not_num = len(notify)
-      print(not_num)
   return render(request, 'productindex.html', context={'posts': posts, 'notifications': not_num })
 
 class PostFormView(LoginRequiredMixin, View):
