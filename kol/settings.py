@@ -36,6 +36,16 @@ AUTH_USER_MODEL = 'customuser.CustomUser'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 
+REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.AllowAny'],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )}
+CORS_ORIGIN_ALLOW_ALL = True
+
+DJOSER = {
+    "USER_ID_FIELD": "username"
+}
 
 # Application definition
 
@@ -47,6 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'corsheaders',
     # group made apps
     'api',
     'comment',
@@ -57,6 +70,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
