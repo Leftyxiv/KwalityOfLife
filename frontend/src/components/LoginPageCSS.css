@@ -1,0 +1,8 @@
+.form-bg {
+    background-color: lightgrey;
+    width: 20vw;
+    position: relative;
+    left: 400px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
