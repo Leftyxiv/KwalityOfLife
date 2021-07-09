@@ -9,7 +9,7 @@
 <span>{{ post.created_at }}</span>
 <br>
 {% if post.company_website %}
-<span>{{ post.company_website }}</span>
+<span><a href="{{ post.company_website }}">{{ post.company_website }}</a></span>
 {% endif %}
 <br>
 <img src="/uploads/{{post.product_image}}" height="200px" width="200px"/>
