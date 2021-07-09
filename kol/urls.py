@@ -23,8 +23,8 @@ from django.conf.urls.static import static
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
 from notifications.views import notification_view
-
 from comment.views import CreateCommentView, like_view, dislike_view
+from directmessages.views import inbox_view, sent_view, FormView
 
 
 from .views import error_404, error_500
@@ -52,7 +52,10 @@ urlpatterns = [
     path('comment/<int:com_id>/dislike', dislike_view),
 
     # notifications
-    path('notifications/', notification_view)
+    path('notifications/', notification_view),
+
+    # messages
+    path('messages/create/', FormView.as_view())
 
 ]
 
