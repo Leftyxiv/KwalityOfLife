@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
 
 import Root from './Root';
 
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Root>
-
+        <ToastContainer hideProgressBar={true} newestOnTop={true} />
         <Navbar />
         <Landing />
         <PostList />
