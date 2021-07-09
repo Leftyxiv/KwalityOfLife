@@ -1,14 +1,25 @@
+import { Switch, Route } from 'react-router-dom';
+
 import logo from './logo.svg';
 import './App.css';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
+import Signup from './components/SignupPage';
 
 function App() {
   return (
     <div className="App">
         <Navbar />
-        <Landing />
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+        </Switch>
+        
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
