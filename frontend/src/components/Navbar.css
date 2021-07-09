@@ -5,7 +5,7 @@
 }
 
 .head {
-  background-color: lightslategray;
+  background-color: lightgray;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .3);
   position: fixed;
   width: 100%;
@@ -17,7 +17,7 @@
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: lightslategray;
+  background-color: lightgray;
 }
 
 .head li a {
@@ -30,8 +30,8 @@
 }
 
 .head li a:hover {
-  background-color: rgb(68, 68, 68);
-  transition: background-color .5s ease-in-out;
+  background-color: rgb(160, 160, 160);
+  transition: background-color .3s ease-in-out;
 }
 
 .head .logo {
