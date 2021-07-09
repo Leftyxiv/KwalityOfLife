@@ -19,11 +19,12 @@ def PostHomeView(request, *args, **kwargs):
   posts = Post.objects.all().order_by('created_at').reverse()
   notify = []
   not_num = ''
-  for notification in Notifications.objects.filter(user=request.user):
-    if notification.read != True:
-      notify.append(notification)
-    if notify:
-      not_num = len(notify)
+  if request.user.is_authenticated:
+    for notification in Notifications.objects.filter(user=request.user):
+      if notification.read != True:
+        notify.append(notification)
+      if notify:
+        not_num = len(notify)
   return render(request, 'productindex.html', context={'posts': posts, 'notifications': not_num })
 
 class PostFormView(LoginRequiredMixin, View):

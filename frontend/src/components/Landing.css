@@ -1,0 +1,14 @@
+header {
+  color: white;
+  background: #37387a;
+  background-image: url('./images/space.jpg');
+  min-height: 80vh;
+  padding-top: 20vh;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
