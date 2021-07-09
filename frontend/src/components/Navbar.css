@@ -1,1 +1,49 @@
-.head-wra
+.head-wrapper {
+  margin: auto;
+  max-width: 1200px;
+  padding: 5px;
+}
+
+.head {
+  background-color: lightslategray;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .3);
+  position: fixed;
+  width: 100%;
+  z-index: 4;
+}
+
+.head ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: lightslategray;
+}
+
+.head li a {
+  display: block;
+  padding: 20px 20px;
+  border-right: 1px solid teal;
+  text-decoration: none;
+  color: slateblue;
+  float: right;
+}
+
+.head li a:hover {
+  background-color: rgb(68, 68, 68);
+  transition: background-color .5s ease-in-out;
+}
+
+.head .logo {
+  display: block;
+  float: left;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.menu .head {
+  clear: both;
+  max-height: 0;
+  transition: max-height .3s ease-in-out;
+}
