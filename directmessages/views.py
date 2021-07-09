@@ -30,3 +30,4 @@ class FormView(View):
       message.save()
       return HttpResponseRedirect('/sentmessages/')
 
+

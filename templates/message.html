@@ -3,8 +3,8 @@
 {% block content %}
 
 {% for message in messages %}
-
-
+{{ message.sender }} --- {{ message.content }}
+<br />
 {% endfor %}
 
 {% endblock %}

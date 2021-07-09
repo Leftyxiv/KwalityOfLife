@@ -25,6 +25,7 @@ from customuser.views import customUserCreation_view, login_view, CustomUserChan
 from notifications.views import notification_view
 from comment.views import CreateCommentView, like_view, dislike_view
 from directmessages.views import inbox_view, sent_view, FormView
+from suggestion.views import SuggestionFormView
 
 
 from .views import error_404, error_500
@@ -57,7 +58,12 @@ urlpatterns = [
     path('notifications/', notification_view),
 
     # messages
-    path('messages/create/', FormView.as_view())
+    path('messages/create/', FormView.as_view()),
+    path('messages/inbox/', inbox_view),
+    path('messages/outbox/', sent_view),
+
+    # suggestions
+    path('suggestions/create/', SuggestionFormView.as_view()),
 
 ]
 
