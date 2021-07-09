@@ -3,12 +3,15 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
+import PostCard from './components/PostCard';
+import PostList from './components/PostList';
 
 function App() {
   return (
     <div className="App">
         <Navbar />
         <Landing />
+        <PostList />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
