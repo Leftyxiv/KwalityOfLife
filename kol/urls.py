@@ -38,6 +38,8 @@ urlpatterns = [
     path('login/', login_view),
     path('myaccount/', CustomUserChangeView.as_view()),
     path('logout/', loggedOut_view),
+
+    # auth views for the front end
     
 
     # post views
