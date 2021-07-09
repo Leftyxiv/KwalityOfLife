@@ -34,7 +34,7 @@
 {% if comment.user.avatar %}
 <span><img src="/uploads/{{ comment.user.avatar }}" height="50px" width="50px" />
 {% endif %}
-{{ comment.user }} - {{ comment.body }} <a href="/comment/{{ comment.id }}/like">Like</a>: 
+<span>{{ comment.user }} - {{ comment.body }} <a href="/comment/{{ comment.id }}/like">Like</a>: 
 {{ comment.likes }} <a href="/comment/{{ comment.id }}/dislike">Dislikes</a>: {{ comment.dislikes }}
 {{ comment.created_at }} </span>
 <br>
