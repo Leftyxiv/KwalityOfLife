@@ -11,9 +11,7 @@ const Root = ({ children, initialState = {} }) => {
   const history = createBrowserHistory();
   const middleware = [thunk, routerMiddleware(history)];
 
-  const store = createStore(
-    rootReducer(history), initialState, applyMiddleware(...middleware)
-  );
+  const store = createStore(rootReducer, initialState, applyMiddleware(...middleware));
 
   return (
     <Provider store={store}>

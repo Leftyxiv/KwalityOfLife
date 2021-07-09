@@ -1,6 +1,12 @@
 import React from 'react'
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const SignupForm = () => {
+import { signupUser } from './SignupActions';
+
+const SignupForm = (props) => {
     const [username, setUsername] = useState("");
     const [pass, setPass] = useState("")
   
@@ -8,14 +14,16 @@ const SignupForm = () => {
   
     const onSub = async (e) => {
       e.preventDefault()
-      const res = await axios.post(login, {
+      const userData = {
         username,
         password: pass
-      })
+      }
+      // const res = await axios.post(login, userData)
       // console.log(res.data['auth_token'])
-      const cookies = new Cookies()
-      cookies.set('Bearer', res.data['auth_token'])
-      console.log(cookies.get('Bearer'))
+      // const cookies = new Cookies()
+      // cookies.set('Bearer', res.data['auth_token'])
+      // console.log(cookies.get('Bearer'))
+      props.signupUser(userData)
     }
     return (
       <div className='form-bg'>
@@ -32,4 +40,15 @@ const SignupForm = () => {
   )
 }
 
-export default SignupForm
+Signup.propTypes = {
+  signupUser: PropTypes.func.isRequired,
+  createUser: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  createUser: state.createUser
+})
+
+export default connect(mapStateToProps, {
+  signupUser
+})(withRouter(SignupForm));
