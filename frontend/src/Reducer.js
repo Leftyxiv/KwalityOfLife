@@ -5,8 +5,8 @@ import { connectRouter } from 'connected-react-router';
 
 import { signupReducer } from './components/SignupReducer';
 
+// const history = createBrowserHistory()
 const createRootReducer = (history) => {
-  // const history = createBrowserHistory()
   combineReducers({
     router: connectRouter(history),
     createUser: signupReducer,

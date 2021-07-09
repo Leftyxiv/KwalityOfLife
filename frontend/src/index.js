@@ -11,16 +11,16 @@ import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore, { history } from './configureStore';
 
-const store = configureStore({})
+// const store = configureStore({})
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
+  // <Provider store={store}>
+  //   <ConnectedRouter history={history}>
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-    </ConnectedRouter>
-  </Provider>,
+  </React.StrictMode>,
+    // </ConnectedRouter> 
+  // </Provider>
   document.getElementById('root')
 );
 
