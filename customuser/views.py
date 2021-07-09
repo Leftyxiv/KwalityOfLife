@@ -25,6 +25,9 @@ def customUserCreation_view(request):
             else:
                 user = CustomUser.objects.create_user(first_name=data['first_name'], last_name=data['last_name'], username=data['username'], password=data['password1'], email=data['email'])
                 login(request, user)
+        if form.errors:
+            # alert(form.errors.as_data())
+            print(form.errors.as_data())
         return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
     form = CustomUserCreationForm()
