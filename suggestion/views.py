@@ -16,8 +16,7 @@ class SuggestionFormView(View):
     if form.is_valid():
       data = form.cleaned_data
       users = CustomUser.objects.filter(is_staff=True)
-      data['content'] = f"THIS IS A SUGGESTION FROM {request.user} --- " + data['content']  # noqa
+      data['content'] = f"--- THIS IS A SUGGESTION --- " + data['content']  # noqa
       for user in users:
         Message.objects.create(sender=request.user, receiver=user, content=data['content'])
-
     return HttpResponseRedirect('/messages/outbox/')
