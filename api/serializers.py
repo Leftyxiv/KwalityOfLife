@@ -5,6 +5,8 @@ from rest_framework.serializers import HyperlinkedModelSerializer, StringRelated
 from comment.models import Comment
 from customuser.models import CustomUser
 from posts.models import Post
+from directmessages.models import Message
+from notifications.models import Notifications
 
 class CommentSerializer(HyperlinkedModelSerializer):
     user = StringRelatedField()
@@ -38,4 +40,23 @@ class CustomUserSerializer(HyperlinkedModelSerializer):
             'last_name',
             'username',
             'email'
+        ]
+
+class DirectMessageSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = Message
+        fields = [
+            'sender',
+            'receiver',
+            'content',
+            'created_at',
+        ]
+
+class NotificationsSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = Notifications
+        fields = [
+            'text',
+            'read',
+            'user'
         ]
