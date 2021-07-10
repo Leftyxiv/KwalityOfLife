@@ -15,8 +15,13 @@ import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import PostWrapper from './PostWrapper';
 import Inbox from './Inbox';
+import Outbox from './Outbox';
 
 const Dash = props => {
+  const thisuser = localStorage.getItem('user');
+    const regex = /{"username":"(\w+)"}/
+    const name = thisuser.match(regex)
+    console.log(name[1])
     return (
         <>
          <Container fluid>
@@ -31,7 +36,8 @@ const Dash = props => {
           <Route exact path="/signup" render={() => <SignupForm />} />
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
-          <Route exact path="/inbox" component={Inbox} />
+          <Route exact path="/inbox" render={() => <Inbox name={name[1]} />} />
+          <Route exact path="/outbox" render={() => <Outbox name={name[1]} />} />
         </Switch>
                     </Col> 
                 </Row>

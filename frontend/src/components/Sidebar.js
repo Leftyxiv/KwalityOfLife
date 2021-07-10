@@ -13,24 +13,26 @@ const Side = props => {
             // onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >
                 <div className="sidebar-sticky"></div>
-            <Nav.Item>
+                <ul>
+            <li>
                 <Link to="/feed">Feed</Link>
-            </Nav.Item>
-            <Nav.Item>
+            </li>
+            <li>
                 <Link to="/createpost">Create a post</Link>
-            </Nav.Item>
+            </li>
 
                 <Link to="/inbox">Inbox</Link>
 
-            <Nav.Item>
+            <li>
                 <Link to="/outbox">Outbox</Link>
-            </Nav.Item>
-            <Nav.Item>
+            </li>
+            <li>
                 <Link to="/createmessage">Send Message</Link>
-            </Nav.Item>
-            <Nav.Item>
+            </li>
+            <li>
                 <Link to="notifications">Notifications</Link>
-            </Nav.Item>
+            </li>
+            </ul>
             {/* <Nav.Item>
                 <Nav.Link eventKey="disabled" disabled>
                 Disabled

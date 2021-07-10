@@ -24,7 +24,7 @@ from posts.views import PostHomeView, PostFormView, post_detail_view, delete_pos
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
 from notifications.views import notification_view
 from comment.views import CreateCommentView, like_view, dislike_view
-from directmessages.views import inbox_view, sent_view, FormView, get_inbox
+from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox
 from suggestion.views import SuggestionFormView
 
 
@@ -63,6 +63,7 @@ urlpatterns = [
     path('messages/inbox/', inbox_view),
     path('messages/outbox/', sent_view),
     path('messages/<str:username>/', get_inbox),
+    path('messagessent/<str:username>/', get_outbox),
 
     # suggestions
     path('suggestions/create/', SuggestionFormView.as_view()),

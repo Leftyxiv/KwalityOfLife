@@ -43,3 +43,13 @@ def get_inbox(request, username, *args, **kwargs):
   if data:
     return Response(data, status=200)
   return Response({}, status=400)
+
+@api_view(['GET'])
+def get_outbox(request, username, *args, **kwargs):
+  user = CustomUser.objects.get(username=username)
+  messages = Message.objects.filter(sender=user)
+  serializer = DirectMessageApiSerializer(messages, many=True)
+  data = serializer.data
+  if data:
+    return Response(data, status=200)
+  return Response({}, status=400)
