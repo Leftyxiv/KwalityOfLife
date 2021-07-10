@@ -13,8 +13,7 @@ import PostCard from './PostCard';
 import PostList from './PostList';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
-import CommentList from './CommentList';
-import PostDetail from './PostDetail';
+import PostWrapper from './PostWrapper';
 
 const Dash = props => {
     return (
@@ -30,9 +29,9 @@ const Dash = props => {
           <Route exact path="/feed" render={() => <PostList />} />
           <Route exact path="/signup" render={() => <SignupForm />} />
           <Route exact path="/login" render={() => <LoginForm />} />
+          <Route exact path="/post/:postId" component={PostWrapper} />
         </Switch>
-                      <PostDetail postId={1} />
-                      <CommentList postId={1} />
+                      
                     </Col> 
                 </Row>
 
