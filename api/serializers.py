@@ -1,6 +1,7 @@
 from ast import Str
 from comment.models import Comment
 from rest_framework.serializers import HyperlinkedModelSerializer, StringRelatedField
+from rest_framework import serializers
 
 from comment.models import Comment
 from customuser.models import CustomUser
@@ -65,3 +66,8 @@ class NotificationsSerializer(HyperlinkedModelSerializer):
             'read',
             'user'
         ]
+
+class CommentApiViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['user', 'body', 'created_at', 'likes', 'dislikes']
