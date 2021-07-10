@@ -33,6 +33,7 @@ const LoginForm = (props) => {
   return (
     <div className='form-bg'>
       <form onSubmit={onSub}>
+        <h2>Log in!</h2>
         <label style={{'color': 'black'}}>Username </label>
       <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
       <br />
