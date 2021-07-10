@@ -30,7 +30,14 @@ const Inbox = () => {
   // }
   useEffect(() => {
     // fetchUser()
-    fetchMessages(user)
+    
+    if(!user){
+      const thisuser = localStorage.getItem('user');
+      const regex = /{"username":"(\w+)"}/
+      setUser(thisuser.match(regex)[1])
+      console.log(user)
+    }
+    fetchMessages()
     return () => {
       
     }

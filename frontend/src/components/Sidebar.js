@@ -19,9 +19,9 @@ const Side = props => {
             <Nav.Item>
                 <Link to="/createpost">Create a post</Link>
             </Nav.Item>
-            <Nav.Item>
+
                 <Link to="/inbox">Inbox</Link>
-            </Nav.Item>
+
             <Nav.Item>
                 <Link to="/outbox">Outbox</Link>
             </Nav.Item>
