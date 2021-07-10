@@ -38,7 +38,6 @@ class FormView(View):
 def get_inbox(request, username, *args, **kwargs):
   user = CustomUser.objects.get(username=username)
   messages = Message.objects.filter(receiver=user)
-  print(messages)
   serializer = DirectMessageApiSerializer(messages, many=True)
   data = serializer.data
   if data:

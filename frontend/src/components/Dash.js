@@ -31,8 +31,8 @@ const Dash = props => {
           <Route exact path="/signup" render={() => <SignupForm />} />
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
+          <Route exact path="/inbox" component={Inbox} />
         </Switch>
-                      <Inbox />
                     </Col> 
                 </Row>
 

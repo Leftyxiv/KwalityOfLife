@@ -2,6 +2,7 @@
 import React from "react";
 import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 import './Sidebar.css'
 
 const Side = props => {
@@ -13,22 +14,22 @@ const Side = props => {
             >
                 <div className="sidebar-sticky"></div>
             <Nav.Item>
-                <Nav.Link href="/feed">Feed</Nav.Link>
+                <Link to="/feed">Feed</Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="/createpost">Create a post</Nav.Link>
+                <Link to="/createpost">Create a post</Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="/inbox">Inbox</Nav.Link>
+                <Link to="/inbox">Inbox</Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="/outbox">Outbox</Nav.Link>
+                <Link to="/outbox">Outbox</Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="/createmessage">Send Message</Nav.Link>
+                <Link to="/createmessage">Send Message</Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="notifications">Notifications</Nav.Link>
+                <Link to="notifications">Notifications</Link>
             </Nav.Item>
             {/* <Nav.Item>
                 <Nav.Link eventKey="disabled" disabled>
