@@ -15,6 +15,7 @@ class CommentSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Comment
         fields = [
+            'id',
             'body',
             'user',
             'post'
@@ -25,6 +26,7 @@ class PostSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Post
         fields = [
+            'id',
             'title',
             'company_website',
             'product_image',
@@ -36,6 +38,7 @@ class CustomUserSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
+            'id',
             'first_name',
             'last_name',
             'username',
@@ -46,6 +49,7 @@ class DirectMessageSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Message
         fields = [
+            'id',
             'sender',
             'receiver',
             'content',
@@ -56,6 +60,7 @@ class NotificationsSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Notifications
         fields = [
+            'id',
             'text',
             'read',
             'user'

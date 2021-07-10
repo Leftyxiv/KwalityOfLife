@@ -19,7 +19,7 @@ const PostList = () => {
   }, [])
   return (
     <div className="cardDiv">
-      {posts.map(post => <PostCard post={post} />)}
+      {posts.map(post => <PostCard key={post.id} post={post} />)}
     </div>
   )
 }
