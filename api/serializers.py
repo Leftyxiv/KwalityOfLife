@@ -31,7 +31,8 @@ class PostSerializer(HyperlinkedModelSerializer):
             'title',
             'company_website',
             'product_image',
-            'description'
+            'description',
+            'user',
         ]
 
 

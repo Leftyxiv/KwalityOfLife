@@ -8,9 +8,15 @@ const Comment = (props) => {
     const res = await axios.get(`http://127.0.0.1:8000/api/customuser/${props.user}`)
     setUser(res.data)
   }
+  useEffect(() => {
+    fetchUser()
+    return () => {
+      
+    }
+  }, [])
   return (
     <div>
-      <img src={user.} { props.user } -- { props.body }
+      <img src={user.avatar} height="50px" width="50px" /> <b>{ user.username } </b> -- { props.body }
     </div>
   )
 }
