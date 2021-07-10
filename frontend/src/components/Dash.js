@@ -13,6 +13,7 @@ import PostCard from './PostCard';
 import PostList from './PostList';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
+import CommentList from './CommentList';
 
 const Dash = props => {
     return (
@@ -29,6 +30,7 @@ const Dash = props => {
           <Route exact path="/signup" render={() => <SignupForm />} />
           <Route exact path="/login" render={() => <LoginForm />} />
         </Switch>
+                      <CommentList postId={1} />
                     </Col> 
                 </Row>
 

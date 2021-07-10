@@ -43,7 +43,8 @@ class CustomUserSerializer(HyperlinkedModelSerializer):
             'first_name',
             'last_name',
             'username',
-            'email'
+            'email',
+            'avatar'
         ]
 
 class DirectMessageSerializer(HyperlinkedModelSerializer):
