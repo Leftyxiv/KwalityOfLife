@@ -3,24 +3,21 @@ import { Switch, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
-import { Switch, Route } from 'react-router';
+// import { Switch, Route } from 'react-router';
 
 import Root from './Root';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
-<<<<<<< HEAD
 import Signup from './components/SignupPage';
 import PostDetail from './components/PostDetailPage';
 import AuthorDetail from './components/AuthorDetailPage';
 import CreatePost from './components/CreatePostPage';
 import ChangeUserDetail from './components/ChangeUserDetailPage';
 import LoginPage from './components/LoginPage';
-=======
 import PostCard from './components/PostCard';
 import PostList from './components/PostList';
 import SignupForm from './components/SignupForm';
->>>>>>> manny4
 
 function App() {
   return (
@@ -28,8 +25,7 @@ function App() {
       <Root>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
         <Navbar />
-        <Switch>
-<<<<<<< HEAD
+        {/* <Switch>
           <Route exact path="/">
             <Landing />
           </Route>
@@ -51,7 +47,7 @@ function App() {
           <Route path="/myaccount">
             <ChangeUserDetail />
           </Route>
-        </Switch>
+        </Switch> */}
         
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -67,13 +63,12 @@ function App() {
           Learn React
         </a>
       </header> */}
-=======
+          <Switch>
           <Route exact path="/" render={() => <Landing />} />
           <Route exact path="/feed" render={() => <PostList />} />
           <Route exact path="/signup" render={() => <SignupForm />} />
         </Switch>
       </Root>
->>>>>>> manny4
     </div>
   );
 }
