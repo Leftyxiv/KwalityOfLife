@@ -24,7 +24,7 @@ export const getCurrentUser = redirect => dispatch => {
     }
     dispatch(setCurrentUser(user, redirect));
   }).catch(err => {
-    dispatch(unsetCurrentUser(user, redirect));
+    dispatch(unsetCurrentUser());
     toastError(err);
   })
 }
