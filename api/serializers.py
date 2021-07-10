@@ -73,3 +73,14 @@ class CommentApiViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['user', 'body', 'created_at', 'likes', 'dislikes']
+
+class DirectMessageApiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = [
+            'id',
+            'sender',
+            'receiver',
+            'content',
+            'created_at',
+        ]

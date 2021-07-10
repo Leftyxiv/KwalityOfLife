@@ -14,6 +14,7 @@ import PostList from './PostList';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import PostWrapper from './PostWrapper';
+import Inbox from './Inbox';
 
 const Dash = props => {
     return (
@@ -31,7 +32,7 @@ const Dash = props => {
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
         </Switch>
-                      
+                      <Inbox />
                     </Col> 
                 </Row>
 

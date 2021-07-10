@@ -27,7 +27,7 @@ const PostDetail = ({postId}) => {
     <div>
       <div>
         <h2>{post.title}</h2>
-        <img src={post.product_image} />
+        <img src={post.product_image} style={{'maxWidth': "20vw"}}/>
         <br />
         { user.username }
         <br />
