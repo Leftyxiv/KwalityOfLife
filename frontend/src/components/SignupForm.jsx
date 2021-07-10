@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -40,7 +40,7 @@ const SignupForm = (props) => {
   )
 }
 
-Signup.propTypes = {
+SignupForm.propTypes = {
   signupUser: PropTypes.func.isRequired,
   createUser: PropTypes.object.isRequired
 };
