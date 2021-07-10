@@ -15,6 +15,10 @@ export const login = (user, redirect) => dispatch => {
             dispatch(unsetCurrentUser());
             toastError(err);
         })
+    if(localStorage.getItem('user') && localStorage.getItem('token')){
+      console.log('trigger')
+      dispatch(push('/feed'))
+    }
 }
 
 export const getCurrentUser = (redirect, auth_token) => dispatch => {
