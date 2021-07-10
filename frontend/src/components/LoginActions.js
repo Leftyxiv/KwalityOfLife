@@ -5,20 +5,24 @@ import { LoginTypes } from './LoginTypes';
 import { setAxiosToken , toastError } from '../utils/Utils';
 
 export const login = (user, redirect) => dispatch => {
-  axios.post("/api/token/login", user)
+  axios.post("http://127.0.0.1:8000/api/token/login/", user)
         .then(res => {
           const { auth_token } = res.data;
           setAxiosToken(auth_token);
           dispatch(setToken(auth_token));
-          dispatch(getCurrentUser(redirect));
+          dispatch(getCurrentUser(redirect, auth_token));
         }).catch(err => {
             dispatch(unsetCurrentUser());
             toastError(err);
         })
 }
 
-export const getCurrentUser = redirect => dispatch => {
-  axios.get('/api/users/me').then((res) => {
+export const getCurrentUser = (redirect, auth_token) => dispatch => {
+  axios.get('http://127.0.0.1:8000/api/users/me/', {
+    headers: {
+      'Authorization': `Token ${auth_token}`
+    }
+  }).then((res) => {
     const user = {
       username: res.data.username,
     }
@@ -40,6 +44,7 @@ export const setToken = (token) => dispatch => {
 
 export const setCurrentUser = (user, redirect) => dispatch => {
   localStorage.setItem('user', JSON.stringify(user));
+  console.log(localStorage.getItem('user'))
   dispatch({
     type: LoginTypes.SET_USER,
     payload: user,
@@ -59,7 +64,7 @@ export const unsetCurrentUser = () => dispatch => {
 }
 
 export const logout = () => dispatch => {
-  axios.post('/api/token/logout').then(res => {
+  axios.post('http://127.0.0.1:8000/api/token/logout/').then(res => {
     dispatch(unsetCurrentUser());
     dispatch(push("/"));
     toast.success('Logged out!')

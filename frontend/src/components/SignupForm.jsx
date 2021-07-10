@@ -10,7 +10,7 @@ const SignupForm = (props) => {
     const [username, setUsername] = useState("");
     const [pass, setPass] = useState("")
   
-    const login = 'http://127.0.0.1:8000/api/token/login/'
+    const login = 'http://127.0.0.1:8000/api/users/'
   
     const onSub = async (e) => {
       e.preventDefault()

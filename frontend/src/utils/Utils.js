@@ -5,6 +5,7 @@ export const setAxiosToken = (token) => {
   if (typeof token !== 'undefined' && token){
     // apply the auth token to the request headers
     axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+    // console.log(axios.defaults.headers.common['Authorization'])
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }

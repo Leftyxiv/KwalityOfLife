@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { login } from './LoginActions';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("")
 
@@ -24,8 +24,8 @@ const LoginForm = () => {
     password: pass
     }
     const res = await axios.post(url, user)
-    this.props.login(user)
-    // console.log(res.data['auth_token'])
+    props.login(user)
+    console.log(res.data['auth_token'])
     // const cookies = new Cookies()
     // cookies.set('Bearer', res.data['auth_token'])
     // console.log(cookies.get('Bearer'))
