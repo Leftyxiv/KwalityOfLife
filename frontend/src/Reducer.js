@@ -7,7 +7,7 @@ import { signupReducer } from './components/SignupReducer';
 
 // const history = createBrowserHistory()
 const createRootReducer = (history) => {
-  combineReducers({
+  return combineReducers({
     router: connectRouter(history),
     createUser: signupReducer,
   });
