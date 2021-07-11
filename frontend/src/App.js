@@ -62,7 +62,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-          <Switch>
+          {/* <Switch> */}
         <Dashboard />
         {/* <Switch>
           <Route exact path="/" render={() => <Landing />} />
