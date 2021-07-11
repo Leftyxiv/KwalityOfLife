@@ -19,10 +19,12 @@ import Outbox from './Outbox';
 import Notifications from './Notifications';
 
 const Dash = props => {
-  const thisuser = localStorage.getItem('user');
+  let name = ['','']
+  if(localStorage.getItem('user')){
+    const thisuser = localStorage.getItem('user');
     const regex = /{"username":"(\w+)"}/
-    const name = thisuser.match(regex)
-    console.log(name[1])
+    name = thisuser.match(regex)
+  }
     return (
         <>
          <Container fluid>
@@ -37,6 +39,7 @@ const Dash = props => {
           <Route exact path="/signup" render={() => <SignupForm />} />
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
+          
           <Route exact path="/inbox" render={() => <Inbox name={name[1]} />} />
           <Route exact path="/outbox" render={() => <Outbox name={name[1]} />} />
           <Route exact path="/notifications" render={() => <Notifications name={name[1]} />} />
