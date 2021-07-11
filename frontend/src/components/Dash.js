@@ -16,6 +16,7 @@ import LoginForm from './LoginForm';
 import PostWrapper from './PostWrapper';
 import Inbox from './Inbox';
 import Outbox from './Outbox';
+import Notifications from './Notifications';
 
 const Dash = props => {
   const thisuser = localStorage.getItem('user');
@@ -38,6 +39,7 @@ const Dash = props => {
           <Route exact path="/post/:postId" component={PostWrapper} />
           <Route exact path="/inbox" render={() => <Inbox name={name[1]} />} />
           <Route exact path="/outbox" render={() => <Outbox name={name[1]} />} />
+          <Route exact path="/notifications" render={() => <Notifications name={name[1]} />} />
         </Switch>
                     </Col> 
                 </Row>

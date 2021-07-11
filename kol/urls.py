@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
-from notifications.views import notification_view
+from notifications.views import notification_view, get_notifications
 from comment.views import CreateCommentView, like_view, dislike_view
 from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox
 from suggestion.views import SuggestionFormView
@@ -57,6 +57,7 @@ urlpatterns = [
 
     # notifications
     path('notifications/', notification_view),
+    path('notifications/<str:username>/', get_notifications),
 
     # messages
     path('messages/create/', FormView.as_view()),

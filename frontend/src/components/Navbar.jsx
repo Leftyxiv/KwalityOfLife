@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Navbar.css';
 
 const Navbar = (props) => {
+  console.log(props)
   let navbar = <ul className='menu'>
   <li><Link to='/'>Home</Link></li>
   <li><Link to='/signup'>Sign Up</Link></li>
@@ -29,4 +31,8 @@ const Navbar = (props) => {
   )
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return { auth: state.auth }
+}
+
+export default connect(mapStateToProps)(Navbar);

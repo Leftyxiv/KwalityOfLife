@@ -8,7 +8,6 @@ const PostDetail = ({postId}) => {
   const fetchUser = async (url) => {
     const res = await axios.get(url);
     setUser(res.data)
-    console.log(user)
   }
 
   const fetchPost = async () => {

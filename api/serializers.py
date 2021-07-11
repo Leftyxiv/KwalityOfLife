@@ -84,3 +84,13 @@ class DirectMessageApiSerializer(serializers.ModelSerializer):
             'content',
             'created_at',
         ]
+
+class NotificationsApiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notifications
+        fields = [
+            'id',
+            'text',
+            'read',
+            'user'
+        ]

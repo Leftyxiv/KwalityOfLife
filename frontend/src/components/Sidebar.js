@@ -30,7 +30,10 @@ const Side = props => {
                 <Link to="/createmessage">Send Message</Link>
             </li>
             <li>
-                <Link to="notifications">Notifications</Link>
+                <Link to="/notifications">Notifications</Link>
+            </li>
+            <li>
+                <Link to="/suggestions">Suggestions</Link>
             </li>
             </ul>
             {/* <Nav.Item>
