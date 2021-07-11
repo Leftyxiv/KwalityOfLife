@@ -48,7 +48,6 @@ export const setToken = (token) => dispatch => {
 
 export const setCurrentUser = (user, redirect) => dispatch => {
   localStorage.setItem('user', JSON.stringify(user));
-  console.log(localStorage.getItem('user'))
   dispatch({
     type: LoginTypes.SET_USER,
     payload: user,

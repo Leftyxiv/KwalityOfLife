@@ -11,7 +11,6 @@ const Navbar = (props) => {
   const logmeout = () => {
     props.logout()
   }
-  console.log(props)
   let navbar = <ul className='menu'>
   <li><Link to='/'>Home</Link></li>
   <li><Link to='/signup'>Sign Up</Link></li>
@@ -22,8 +21,8 @@ const Navbar = (props) => {
     navbar = <ul className='menu'>
     <li><Link to='/feed'>Home</Link></li>
     <li><Link to='/logout'>Logout</Link></li>
-    <li><Link to="#" onClick={logmeout}>Welcome back, {props.auth.user.username}</Link></li>
-    {/* <li><a href='/'>Home</a></li> */}
+    <li><Link to="#" >Welcome back, {props.auth.user.username}</Link></li>
+    {/* <li><a href='/'>Home</a></li> onClick={logmeout()}*/}
   </ul>
   }
   return (
