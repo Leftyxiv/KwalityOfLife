@@ -2,7 +2,16 @@
   background-color: lightgrey;
   width: 20vw;
   position: relative;
-  left: 400px;
+  top: 5vh;
+  left: 40vw;
+  padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 20px;
+}
+
+.bg-wrapper {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
 }

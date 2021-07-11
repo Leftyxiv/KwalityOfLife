@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const PostDetail = ({ post }) => {
-  const [messages, setMessages] = useState([]);
-  const fetchMessages = async () => {
-    const message = await axios.get("http://127.0.0.1:8000/api/comment");
-    // message = message.filter(m => m.user === )
-    console.log(message)
+const PostDetail = ({postId}) => {
+  const [post, setPost] = useState({});
+  const [user, setUser] = useState({});
+
+  const fetchUser = async (url) => {
+    const res = await axios.get(url);
+    setUser(res.data)
   }
+
+  const fetchPost = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/post/${postId}/`);
+    setPost(res.data);
+    fetchUser(res.data.user)
+  }
+
+  useEffect(() => {
+    fetchPost()
+    return () => {
+      
+    }
+  }, [])
   return (
     <div>
       <div>
         <h2>{post.title}</h2>
-        <img src={post.product_image} />
-
+        <img src={post.product_image} style={{'maxWidth': "20vw"}}/>
+        <br />
+        { user.username }
+        <br />
+        { post.description }
       </div>
       <div>
 

@@ -1,6 +1,7 @@
 // card template used straight from bootstrap docs
 import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const PostCard = ({ post }) => {
@@ -13,7 +14,7 @@ const PostCard = ({ post }) => {
               <Card.Text>
                 {post.product_website}
               </Card.Text>
-            <Button variant="primary">Details!</Button>
+            <Link to={`/post/${post.id}`} ><Button variant="primary">Details!</Button></Link>
           </Card.Body>
         </Card>
     </div>

@@ -20,11 +20,11 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post
+from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
-from notifications.views import notification_view
+from notifications.views import notification_view, get_notifications
 from comment.views import CreateCommentView, like_view, dislike_view
-from directmessages.views import inbox_view, sent_view, FormView
+from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox
 from suggestion.views import SuggestionFormView
 
 
@@ -45,6 +45,7 @@ urlpatterns = [
 
     # post views
     path('post/<int:post_id>/', post_detail_view),
+    path('post/<int:post_id>/comments/', get_comments),
     # All Author's posts together
     path('author/<int:author_id>/', author_detail),
     path('post/<int:post_id>/delete', delete_post),
@@ -56,11 +57,14 @@ urlpatterns = [
 
     # notifications
     path('notifications/', notification_view),
+    path('notifications/<str:username>/', get_notifications),
 
     # messages
     path('messages/create/', FormView.as_view()),
     path('messages/inbox/', inbox_view),
     path('messages/outbox/', sent_view),
+    path('messages/<str:username>/', get_inbox),
+    path('messagessent/<str:username>/', get_outbox),
 
     # suggestions
     path('suggestions/create/', SuggestionFormView.as_view()),

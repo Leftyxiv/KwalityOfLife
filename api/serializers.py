@@ -1,6 +1,7 @@
 from ast import Str
 from comment.models import Comment
 from rest_framework.serializers import HyperlinkedModelSerializer, StringRelatedField
+from rest_framework import serializers
 
 from comment.models import Comment
 from customuser.models import CustomUser
@@ -15,6 +16,7 @@ class CommentSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Comment
         fields = [
+            'id',
             'body',
             'user',
             'post'
@@ -25,10 +27,12 @@ class PostSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Post
         fields = [
+            'id',
             'title',
             'company_website',
             'product_image',
-            'description'
+            'description',
+            'user',
         ]
 
 
@@ -36,16 +40,19 @@ class CustomUserSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
+            'id',
             'first_name',
             'last_name',
             'username',
-            'email'
+            'email',
+            'avatar'
         ]
 
 class DirectMessageSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Message
         fields = [
+            'id',
             'sender',
             'receiver',
             'content',
@@ -56,6 +63,33 @@ class NotificationsSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Notifications
         fields = [
+            'id',
+            'text',
+            'read',
+            'user'
+        ]
+
+class CommentApiViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['user', 'body', 'created_at', 'likes', 'dislikes']
+
+class DirectMessageApiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = [
+            'id',
+            'sender',
+            'receiver',
+            'content',
+            'created_at',
+        ]
+
+class NotificationsApiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notifications
+        fields = [
+            'id',
             'text',
             'read',
             'user'

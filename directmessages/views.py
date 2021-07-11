@@ -1,8 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import Message
 from .forms import MessageForm
+from customuser.models import CustomUser
+from api.serializers import DirectMessageApiSerializer
 
 def inbox_view(request, *args, **kwargs):
   messages = Message.objects.filter(receiver=request.user)
@@ -30,4 +34,22 @@ class FormView(View):
       message.save()
       return HttpResponseRedirect('/sentmessages/')
 
+@api_view(['GET'])
+def get_inbox(request, username, *args, **kwargs):
+  user = CustomUser.objects.get(username=username)
+  messages = Message.objects.filter(receiver=user)
+  serializer = DirectMessageApiSerializer(messages, many=True)
+  data = serializer.data
+  if data:
+    return Response(data, status=200)
+  return Response({}, status=400)
 
+@api_view(['GET'])
+def get_outbox(request, username, *args, **kwargs):
+  user = CustomUser.objects.get(username=username)
+  messages = Message.objects.filter(sender=user)
+  serializer = DirectMessageApiSerializer(messages, many=True)
+  data = serializer.data
+  if data:
+    return Response(data, status=200)
+  return Response({}, status=400)

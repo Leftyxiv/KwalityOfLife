@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
 from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.decorators import api_view
+from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.response import Response
 
 from .models import Post
 from .forms import PostForm
@@ -9,8 +12,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from notifications.models import Notifications
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from api.serializers import CommentSerializer, CommentApiViewSerializer
 
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
@@ -67,3 +69,13 @@ def delete_post(request, post_id, *args, **kwargs):
     raise Http404
   post.delete()
   return HttpResponseRedirect('/')
+
+@api_view(['GET'])
+def get_comments(request, post_id, *args, **kwargs):
+  post = Post.objects.get(id=post_id)
+  comments = Comment.objects.filter(post=post)
+  serializer = CommentApiViewSerializer(comments, many=True)
+  data = serializer.data
+  if data:
+    return Response(data, status=200)
+  return Response({}, status=400)
