@@ -1,6 +1,3 @@
-import { Switch, Route } from 'react-router-dom';
-
-import logo from './logo.svg';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 // import { Switch, Route } from 'react-router';
@@ -14,7 +11,6 @@ import Navbar from './components/Navbar';
 // import SignupForm from './components/SignupForm';
 // import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dash';
-import requireAuth from './components/RequireAuth';
 import './App.css'
 
 function App() {
@@ -22,7 +18,7 @@ function App() {
     <div className="App">
       <Root>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
-        <div class='bars'>
+        <div className='bars'>
         <Navbar />
         {/* <Switch>
           <Route exact path="/">
@@ -69,6 +65,29 @@ function App() {
           <Route exact path="/feed" render={() => <PostList />} />
           <Route exact path="/signup" render={() => <SignupForm />} />
           <Route exact path="/login" render={() => <LoginForm />} />
+        </Switch> */}
+        {/* <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route path="/post/:id">
+            <PostDetail />
+          </Route>
+          <Route path="/author/:id">
+            <AuthorDetail />
+          </Route>
+          <Route path="/addpost">
+            <CreatePost />
+          </Route>
+          <Route path="/myaccount">
+            <ChangeUserDetail />
+          </Route>
         </Switch> */}
         </div>
       </Root>

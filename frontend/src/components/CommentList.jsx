@@ -19,7 +19,7 @@ const CommentList = (props) => {
 
   return (
     <div>
-      {messages.map((message) => <Comment {...message} />)}
+      {messages.map((message) => <Comment key={message.id} {...message} />)}
     </div>
   )
 }
