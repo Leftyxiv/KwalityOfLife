@@ -20,3 +20,19 @@ class SuggestionFormView(View):
       for user in users:
         Message.objects.create(sender=request.user, receiver=user, content=data['content'])
     return HttpResponseRedirect('/messages/outbox/')
+from customuser.models import CustomUser
+from django.shortcuts import render
+from directmessages.forms import SuggestionModelForm
+from directmessages.models import Message
+# Create your views here.
+
+
+
+
+
+class SuggestionFormView(View):
+    def get(self, request, *args, **kwargs):
+        form = SuggestionModelForm()
+        return render(request, 'form.html', context={'form' : form})
+
+

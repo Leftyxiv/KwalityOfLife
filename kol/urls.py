@@ -70,7 +70,6 @@ urlpatterns = [
     path('suggestions/create/', SuggestionFormView.as_view()),
 
 ]
-
 handler404 = error_404
 handler500 = error_500
 
