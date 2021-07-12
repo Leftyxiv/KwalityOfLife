@@ -65,8 +65,12 @@ def create_comment(request, post_id, *args, **kwargs):
         if serializer.is_valid(raise_exception=True):
             serializer.post = post
             serializer.user = user
-            print(serializer)
-            # serializer.user = user
+            if '@' in serializer.validated_data['body']:
+                pattern = '@(\w+)'
+                result = re.findall(pattern, serializer.validated_data['body'])[0]
+                user_to_notify = CustomUser.objects.get(username=result)
+                if user_to_notify:
+                    Notifications.objects.create(text=serializer.validated_data['body'], user=user_to_notify)
             serializer.save()
 
         # if form.is_valid():
