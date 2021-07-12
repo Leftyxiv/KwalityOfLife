@@ -11,6 +11,7 @@ from comment.forms import AddComment
 from posts.models import Post
 from notifications.models import Notifications
 from customuser.models import CustomUser
+from api.serializers import CommentCreateApiViewSerializer
 
 
 class CreateCommentView(LoginRequiredMixin, View):
@@ -59,7 +60,15 @@ def dislike_view(request, com_id):
 def create_comment(request, post_id, *args, **kwargs):
         user = request.user
         post = Post.objects.get(id=post_id)
-        print(request.POST)
+        # print(user)
+        serializer = CommentCreateApiViewSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.post = post
+            serializer.user = user
+            print(serializer)
+            # serializer.user = user
+            serializer.save()
+
         # if form.is_valid():
         #     data = form.cleaned_data
         #     if '@' in data['body']:
@@ -74,4 +83,4 @@ def create_comment(request, post_id, *args, **kwargs):
         #         user=user
         #     )
         # return HttpResponseRedirect(f'/post/{post.id}/')
-        return Response({}, status=400)
+        return Response(serializer.data, status=200)
