@@ -8,12 +8,15 @@ def add_user(request, *args, **kwargs):
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from customuser.forms import CustomUserChangeForm, CustomUserCreationForm, LoginForm
 from customuser.models import CustomUser
+from api.serializers import CustomUserSerializer
 
 # Create your views here.
 # SignUp
@@ -114,7 +117,8 @@ def author_detail(request, author_id: int):
     author_posts = Post.objects.filter(user=my_authors.id)
     return render(request, 'author_detail.html', {'author': my_authors, 'posts': author_posts})
 
-def get_my_id(request, *args, **kwargs):
-    user = request.user
-    print(user.id)
-    ...
+@api_view(['GET'])
+def get_my_id(request, username, *args, **kwargs):
+    user = CustomUser.objects.get(username=username)
+    serializer = CustomUserSerializer(user)
+    return Response(serializer.data, status=200)

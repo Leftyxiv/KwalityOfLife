@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, posts_view
-from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
+from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail, get_my_id
 from notifications.views import notification_view, get_notifications
 from comment.views import CreateCommentView, like_view, dislike_view, create_comment
 from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox
@@ -51,6 +51,7 @@ urlpatterns = [
     # All Author's posts together
     path('author/<int:author_id>/', author_detail),
     path('post/<int:post_id>/delete', delete_post),
+    path('users/getme/<str:username>/', get_my_id),
 
     # comment views
     path('post/<int:post_id>/addcomment', CreateCommentView.as_view()),

@@ -15,7 +15,7 @@ const CommentList = (props) => {
     return () => {
 
     }
-  }, [])
+  }, [props.statething])
 
   return (
     <div>
