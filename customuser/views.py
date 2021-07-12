@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .forms import UserCreationForm
 from posts.models import Post
 
+def add_user(request, *args, **kwargs):
+  form = UserCreationForm()
+  return render(request, 'form.html', context={'form': form})
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 
@@ -25,9 +28,6 @@ def customUserCreation_view(request):
             else:
                 user = CustomUser.objects.create_user(first_name=data['first_name'], last_name=data['last_name'], username=data['username'], password=data['password1'], email=data['email'])
                 login(request, user)
-        if form.errors:
-            # alert(form.errors.as_data())
-            print(form.errors.as_data())
         return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
     form = CustomUserCreationForm()
@@ -43,7 +43,7 @@ def login_view(request):
             # user = form.save()
             if user: 
                 login(request, user)
-                return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
+            return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
     form = LoginForm()
     return render(request, "form.html", {'form' : form})
 
@@ -78,9 +78,11 @@ class CustomUserChangeView(LoginRequiredMixin, View):
         item = request.user
         
         form = CustomUserChangeForm(initial={
+            'username': item.username,
             'email' : item.email,
             'first_name' : item.first_name,
             'last_name' : item.last_name,
+
         })
         return render(request, "form.html", {"form": form})
 
@@ -88,16 +90,16 @@ class CustomUserChangeView(LoginRequiredMixin, View):
         item = request.user
 
         if request.method == "POST":
-            form = CustomUserChangeForm(request.POST, request.FILES)
+            form = CustomUserChangeForm(request.POST)
 
             if form.is_valid():
                 data = form.cleaned_data
+                item.username = data['username']
                 item.email = data['email']
                 item.first_name = data['first_name']
                 item.last_name = data['last_name']
-                item.avatar = data['avatar']
                 item.save()
-                return HttpResponseRedirect('/myaccount/')
+                return HttpResponseRedirect('/')
 
 
 # Log out

@@ -1,4 +1,6 @@
+from django.db.models.base import Model
 from django.shortcuts import render
+from rest_framework import serializers
 from rest_framework.decorators import action
 
 from rest_framework.viewsets import ModelViewSet
@@ -25,9 +27,11 @@ class CustomUserViewSet(ModelViewSet):
     serializer_class = CustomUserSerializer
     queryset = CustomUser.objects.all()
 
+
 class MessageViewSet(ModelViewSet):
     serializer_class = DirectMessageSerializer
     queryset = Message.objects.all()
+
 
 class NotificationsViewSet(ModelViewSet):
     serializer_class = NotificationsSerializer
