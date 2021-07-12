@@ -110,3 +110,8 @@ def author_detail(request, author_id: int):
     my_authors = CustomUser.objects.get(id=author_id)
     author_posts = Post.objects.filter(user=my_authors.id)
     return render(request, 'author_detail.html', {'author': my_authors, 'posts': author_posts})
+
+def get_my_id(request, *args, **kwargs):
+    user = request.user
+    print(user.id)
+    ...
