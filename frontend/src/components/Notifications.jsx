@@ -18,7 +18,7 @@ const Notifications = ({ name }) => {
 
   return (
     <div className="notifyDiv">
-      { notifications.map(not => <Notification user={not.user} text={not.text} />)}
+      { notifications.map(not => <Notification key={not.id} user={not.user} text={not.text} />)}
     </div>
   )
 }
