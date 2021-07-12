@@ -6,18 +6,27 @@ import { connect } from 'react-redux';
 
 const CreateComment = (props) => {
   const [comment, setComment] = useState("");
-  console.log(props)
+  const [userId, setUserId] = useState(0);
+  
+  useEffect(() => {
+    fetchUser();
+  }, [])
+  
+  const fetchUser = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/users/getme/${props.user.username}`)
+    setUserId(res.data.id)
 
+  }
   const onSubmit = async (e) => {
     e.preventDefault()
     console.log(comment)
     console.log({ 'body': comment, "post": props.postId })
-    const res = await axios.post(`http://127.0.0.1:8000/post/${props.postId}/comment/`, { 'body': comment, "post": props.postId, "user": 1 }, {
+    await axios.post(`http://127.0.0.1:8000/post/${props.postId}/comment/`, { 'body': comment, "post": props.postId, "user": userId }, {
       headers: {
         'Authorization': `Token ${props.token}`
       }
     })
-    console.log(res.data)
+    setComment("")
   }
 
   return (
