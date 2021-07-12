@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 import re
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from comment.models import Comment
 from comment.forms import AddComment
@@ -52,3 +54,24 @@ def dislike_view(request, com_id):
     comment.dislikes -= 1
     comment.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@api_view(['POST'])
+def create_comment(request, post_id, *args, **kwargs):
+        user = request.user
+        post = Post.objects.get(id=post_id)
+        print(request.POST)
+        # if form.is_valid():
+        #     data = form.cleaned_data
+        #     if '@' in data['body']:
+        #         pattern = '@(\w+)'
+        #         result = re.findall(pattern, data['body'])[0]
+        #         user_to_notify = CustomUser.objects.get(username=result)
+        #         if user_to_notify:
+        #             Notifications.objects.create(text=data['body'], user=user_to_notify)
+        #     Comment.objects.create(
+        #         body=data['body'],
+        #         post=post,
+        #         user=user
+        #     )
+        # return HttpResponseRedirect(f'/post/{post.id}/')
+        return Response({}, status=400)

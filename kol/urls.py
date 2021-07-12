@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
 from notifications.views import notification_view, get_notifications
-from comment.views import CreateCommentView, like_view, dislike_view
+from comment.views import CreateCommentView, like_view, dislike_view, create_comment
 from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox
 from suggestion.views import SuggestionFormView
 
@@ -54,6 +54,9 @@ urlpatterns = [
     path('post/<int:post_id>/addcomment', CreateCommentView.as_view()),
     path('comment/<int:com_id>/like', like_view),
     path('comment/<int:com_id>/dislike', dislike_view),
+
+    # react comment view
+    path('post/<int:post_id>/comment/', create_comment),
 
     # notifications
     path('notifications/', notification_view),
