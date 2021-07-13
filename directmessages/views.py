@@ -57,7 +57,9 @@ def get_outbox(request, username, *args, **kwargs):
 @api_view(['POST'])
 def send_dm(request, recipient, *arg, **kwargs):
   recipient = CustomUser.objects.get(id=recipient)
-  serializer = DirectMessageApiSerializer(request.POST)
+  serializer = DirectMessageApiSerializer(data=request.data)
+  print(request.data)
+  print(serializer.is_valid())
   if serializer.is_valid():
     serializer.save()
     return Response(serializer.data, status=201)
