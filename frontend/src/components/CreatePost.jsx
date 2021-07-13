@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import { push } from 'connected-react-router';
 
+
 const CreatePost = (props) => {
   const [user, setUser] = useState({});
   const [title, setTitle] = useState("");
@@ -57,6 +58,7 @@ const CreatePost = (props) => {
     setProduct("");
     setDescription("");
     setCompany("");
+    // dispatch(push('/feed'))
   }
   // fetchUser();
   // const 
