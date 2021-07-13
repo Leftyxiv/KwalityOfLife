@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.views import View
 from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.response import Response
 
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, PostURL
 from comment.models import Comment
 from comment.forms import AddComment
 from notifications.models import Notifications
@@ -79,3 +79,16 @@ def get_comments(request, post_id, *args, **kwargs):
   if data:
     return Response(data, status=200)
   return Response({}, status=400)
+
+
+def posts_view(request):
+  if request.method == 'POST':
+    form = PostURL(request.POST)
+    if form.is_valid():
+      data = form.cleaned_data
+      disability = data['disability']
+      purpose = data['purpose']
+      if disability or purpose:
+        return HttpResponseRedirect(f'{disability}%20{purpose}')
+  posts = Post.objects.all()
+  return render(request, 'post_index.html', {'posts': posts})

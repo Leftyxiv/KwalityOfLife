@@ -11,7 +11,6 @@ import Navbar from './components/Navbar';
 // import SignupForm from './components/SignupForm';
 // import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dash';
-import HomePage from './components/HomePage';
 import './App.css'
 
 function App() {
