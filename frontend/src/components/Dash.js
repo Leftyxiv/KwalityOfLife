@@ -17,7 +17,7 @@ import PostWrapper from './PostWrapper';
 import Inbox from './Inbox';
 import Outbox from './Outbox';
 import Notifications from './Notifications';
-
+import DirectMessage from './DirectMessage';
 
 const Dash = props => {
   let name = ['','']
@@ -44,6 +44,7 @@ const Dash = props => {
           <Route exact path="/inbox" render={() => <Inbox name={name[1]} />} />
           <Route exact path="/outbox" render={() => <Outbox name={name[1]} />} />
           <Route exact path="/notifications" render={() => <Notifications name={name[1]} />} />
+          <Route exact path="/createmessage" render={() => <DirectMessage />} />
         </Switch>
                     </Col> 
                 </Row>
