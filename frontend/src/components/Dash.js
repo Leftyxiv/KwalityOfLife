@@ -18,6 +18,7 @@ import Inbox from './Inbox';
 import Outbox from './Outbox';
 import Notifications from './Notifications';
 
+
 const Dash = props => {
   let name = ['','']
   if(localStorage.getItem('user')){
