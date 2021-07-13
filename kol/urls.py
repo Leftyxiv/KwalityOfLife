@@ -20,13 +20,14 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments
+from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, PostAPIView
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail, get_my_id, get_all_users
 from notifications.views import notification_view, get_notifications
 from comment.views import CreateCommentView, like_view, dislike_view, create_comment
 from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox, send_dm
 from suggestion.views import SuggestionFormView
 
+from django.views.decorators.csrf import csrf_exempt
 
 from .views import error_404, error_500
 
@@ -34,7 +35,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', PostHomeView, name='homepage'),
     # user views
-    path('addpost/', PostFormView.as_view()),
     path('signup/', customUserCreation_view),
     path('login/', login_view),
     path('myaccount/', CustomUserChangeView.as_view()),
@@ -44,6 +44,8 @@ urlpatterns = [
     
 
     # post views
+    path('addpost/', PostFormView.as_view()),
+    path('post/create/', csrf_exempt(PostAPIView.as_view())),
     path('post/<int:post_id>/', post_detail_view),
     path('post/<int:post_id>/comments/', get_comments),
     # All Author's posts together
