@@ -15,7 +15,7 @@ const Outbox = (props) => {
     setUser(thisuser.match(regex)[1])
     console.log(user)
     const messages = await axios.get(`http://127.0.0.1:8000/messagessent/${props.name}`)
-    setOutbox(messages.data)
+    setOutbox(messages.data.reverse())
   }
 
   useEffect(() => {

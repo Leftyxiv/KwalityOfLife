@@ -25,7 +25,7 @@ const LoginForm = (props) => {
     }
     const res = await axios.post(url, user)
     props.login(user)
-    console.log(res.data['auth_token'])
+    // console.log(res.data['auth_token'])
     // const cookies = new Cookies()
     // cookies.set('Bearer', res.data['auth_token'])
     // console.log(cookies.get('Bearer'))
