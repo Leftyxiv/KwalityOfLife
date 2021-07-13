@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<form method='post'>{% csrf_token %}
+    <select name='disability'>
+        <option value='Intellectual'>Intellectual</option>
+        <option value='Physical'>Physical</option>
+        <option value='Sensory'>Sensory</option>
+        <option value='Mental'>Mental</option>
+    </select>
+    <select name='purpose'>
+        <option value='Educational'>Educational</option>
+        <option value='Entertainment'>Entertainment</option>
+        <option value='Clothing'>Clothing</option>
+        <option value='Cuisine&Dining'>Cuisine&Dining</option>
+        <option value='Transportation'>Transportation</option>
+        <option value='Hobby'>Hobby</option>
+    </select>
+    <input type='submit', value='Select'>
+</form>
+{{ dis }}
+{{ pur }}
+{% for foo in posts %}
+<h1>{{ foo.title }}</h1>
+{% endfor %}
+{% endblock %}
