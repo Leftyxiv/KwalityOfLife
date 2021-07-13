@@ -8,7 +8,7 @@ const Notifications = ({ name }) => {
   const [notifications, setNotifications] = useState([]);
   const fetchNotifications = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/notifications/${name}`);
-    setNotifications(res.data);
+    setNotifications(res.data.reverse());
   }
   useEffect(() => {
     fetchNotifications()
@@ -18,7 +18,7 @@ const Notifications = ({ name }) => {
 
   return (
     <div className="notifyDiv">
-      { notifications.map(not => <Notification user={not.user} text={not.text} />)}
+      { notifications.map(not => <Notification key={not.id} user={not.user} text={not.text} />)}
     </div>
   )
 }

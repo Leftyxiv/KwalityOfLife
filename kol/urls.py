@@ -20,13 +20,14 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, posts_view
+from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, posts_view, PostAPIView
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail
 from notifications.views import notification_view, get_notifications
-from comment.views import CreateCommentView, like_view, dislike_view
-from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox
+from comment.views import CreateCommentView, like_view, dislike_view, create_comment
+from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox, send_dm
 from suggestion.views import SuggestionFormView
 
+from django.views.decorators.csrf import csrf_exempt
 
 from .views import error_404, error_500
 
@@ -34,7 +35,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', PostHomeView, name='homepage'),
     # user views
-    path('addpost/', PostFormView.as_view()),
     path('signup/', customUserCreation_view),
     path('login/', login_view),
     path('myaccount/', CustomUserChangeView.as_view()),
@@ -46,16 +46,25 @@ urlpatterns = [
     # post views
     path('post/', posts_view),
     # path('post/<str:dis>%20<str:pur>/', sorted_choices),
+    path('addpost/', PostFormView.as_view()),
+    path('post/create/', csrf_exempt(PostAPIView.as_view())),
     path('post/<int:post_id>/', post_detail_view),
     path('post/<int:post_id>/comments/', get_comments),
     # All Author's posts together
     path('author/<int:author_id>/', author_detail),
     path('post/<int:post_id>/delete', delete_post),
 
+    # REACT user views
+    path('users/getme/<str:username>/', get_my_id),
+    path('users/all/', get_all_users),
+
     # comment views
     path('post/<int:post_id>/addcomment', CreateCommentView.as_view()),
     path('comment/<int:com_id>/like', like_view),
     path('comment/<int:com_id>/dislike', dislike_view),
+
+    # REACT comment view
+    path('post/<int:post_id>/comment/', create_comment),
 
     # notifications
     path('notifications/', notification_view),
@@ -65,8 +74,10 @@ urlpatterns = [
     path('messages/create/', FormView.as_view()),
     path('messages/inbox/', inbox_view),
     path('messages/outbox/', sent_view),
+    # REACT MESSAGE ROUTES
     path('messages/<str:username>/', get_inbox),
     path('messagessent/<str:username>/', get_outbox),
+    path('messages/dm/<int:recipient>/', send_dm),
 
     # suggestions
     path('suggestions/create/', SuggestionFormView.as_view()),

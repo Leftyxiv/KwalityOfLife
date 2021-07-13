@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const PostDetail = ({postId}) => {
@@ -33,7 +34,8 @@ const PostDetail = ({postId}) => {
         { post.description }
       </div>
       <div>
-
+      <br />
+      <Link to="/feed">Go back!</Link>
       </div>
     </div>
   )
