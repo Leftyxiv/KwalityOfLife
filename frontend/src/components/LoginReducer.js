@@ -3,7 +3,7 @@ import { LoginTypes } from './LoginTypes';
 const initialState = {
   user: {},
   authenticated: false,
-  token: ""
+  token: "",
 }
 
 export const LoginReducer = (state=initialState, action) => {

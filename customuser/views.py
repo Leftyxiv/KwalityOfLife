@@ -4,12 +4,15 @@ from posts.models import Post
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from customuser.forms import CustomUserChangeForm, CustomUserCreationForm, LoginForm
 from customuser.models import CustomUser
+from api.serializers import CustomUserSerializer
 
 # Create your views here.
 # SignUp
@@ -110,3 +113,20 @@ def author_detail(request, author_id: int):
     my_authors = CustomUser.objects.get(id=author_id)
     author_posts = Post.objects.filter(user=my_authors.id)
     return render(request, 'author_detail.html', {'author': my_authors, 'posts': author_posts})
+
+@api_view(['GET'])
+def get_my_id(request, username, *args, **kwargs):
+    """ this function takes in a username as a string and returns the user object"""
+    user = CustomUser.objects.get(username=username)
+    serializer = CustomUserSerializer(user)
+    return Response(serializer.data, status=200)
+
+@api_view(['GET'])
+def get_all_users(request, *args, **kwargs):
+    """This function returns a list of id/names for message dropdown"""
+    name_list = []
+    qs = CustomUser.objects.all()
+    for user in qs:
+        serializer = CustomUserSerializer(user)
+        name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
+    return Response(name_list, status=200)

@@ -5,6 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.decorators import api_view
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import status
 
 from .models import Post
 from .forms import PostForm
@@ -12,7 +15,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from notifications.models import Notifications
 
-from api.serializers import CommentSerializer, CommentApiViewSerializer
+from api.serializers import CommentSerializer, CommentApiViewSerializer, PostApiSerializer
 
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
@@ -79,3 +82,21 @@ def get_comments(request, post_id, *args, **kwargs):
   if data:
     return Response(data, status=200)
   return Response({}, status=400)
+
+# @csrf_exempt
+class PostAPIView(APIView):
+  parser_classes = (MultiPartParser, FormParser)
+
+  def get(self, request, *args, **kwargs):
+    posts = Post.objects.all()
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+  def post(self, request, *args, **kwargs):
+    serializer = PostApiSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data, status=201)
+    else:
+      print(serializer.errors)
+      return Response(serializer.errors, status=400)
