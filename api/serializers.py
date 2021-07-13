@@ -99,3 +99,8 @@ class NotificationsApiSerializer(serializers.ModelSerializer):
             'read',
             'user'
         ]
+
+class PostApiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'

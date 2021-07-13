@@ -15,8 +15,7 @@ export const login = (user, redirect) => dispatch => {
             dispatch(unsetCurrentUser());
             toastError(err);
         })
-    if(localStorage.getItem('user') && localStorage.getItem('token')){
-      console.log('trigger')
+        if(localStorage.getItem('user') && localStorage.getItem('token')){
       dispatch(push('/feed'))
     }
 }

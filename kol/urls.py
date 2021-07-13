@@ -49,6 +49,8 @@ urlpatterns = [
     # All Author's posts together
     path('author/<int:author_id>/', author_detail),
     path('post/<int:post_id>/delete', delete_post),
+
+    # REACT user views
     path('users/getme/<str:username>/', get_my_id),
     path('users/all/', get_all_users),
 
@@ -57,7 +59,7 @@ urlpatterns = [
     path('comment/<int:com_id>/like', like_view),
     path('comment/<int:com_id>/dislike', dislike_view),
 
-    # react comment view
+    # REACT comment view
     path('post/<int:post_id>/comment/', create_comment),
 
     # notifications
@@ -68,6 +70,7 @@ urlpatterns = [
     path('messages/create/', FormView.as_view()),
     path('messages/inbox/', inbox_view),
     path('messages/outbox/', sent_view),
+    # REACT MESSAGE ROUTES
     path('messages/<str:username>/', get_inbox),
     path('messagessent/<str:username>/', get_outbox),
     path('messages/dm/<int:recipient>/', send_dm),
