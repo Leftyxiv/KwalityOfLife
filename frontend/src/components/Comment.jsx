@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Comment = (props) => {
   const [user, setUser] = useState({})
@@ -39,7 +40,7 @@ const Comment = (props) => {
       <img alt="user avatar" src={user.avatar} height="50px" width="50px" /> 
       </div>
       <div>
-      <b>{ user.username }</b>
+      <Link to={`/user/${user.id}`}><b>{ user.username }</b></Link>
       <br />
       { props.body }
       <br />
