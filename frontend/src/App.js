@@ -1,6 +1,6 @@
 import './App.css';
 import { ToastContainer } from 'react-toastify';
-import { Switch, Route } from 'react-router';
+import { Route } from 'react-router';
 
 import Root from './Root';
 

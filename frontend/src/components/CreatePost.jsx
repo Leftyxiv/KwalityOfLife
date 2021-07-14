@@ -13,7 +13,8 @@ const CreatePost = (props) => {
   const [productImg, setProduct] = useState("");
   const [description, setDescription] = useState("");
 
-
+  // const values = document.getElementById('options')
+  // console.log(values.value);
   const fetchUser = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/users/getme/${props.auth.user['username']}/`);
     setUser(res.data);
@@ -34,7 +35,7 @@ const CreatePost = (props) => {
       return
     }
     if(!title || !description){
-      toast.erre('Please add a title and description of the item')
+      toast.error('Please add a title and description of the item')
     }
     console.log(productImg)
     let formData = new FormData();
@@ -44,7 +45,7 @@ const CreatePost = (props) => {
     formData.append('title', title);
     formData.append('company_website', company);
     formData.append('description', description);
-    formData.append('user', user.id)
+    formData.append('user', user.id);
     const endPoint = 'http://127.0.0.1:8000/post/create/';
     const res = await axios.post(endPoint, formData, {
       headers: {
@@ -81,6 +82,34 @@ const CreatePost = (props) => {
         <br />
         <label>Description: </label>
         <textarea value={description} id="description" onChange={(e) => setDescription(e.target.value)} />
+        <br />
+        <label>Assists with: </label>
+        <select id="disability">
+          <option value="INTELLECTUAL">Intellectual</option>
+          <option value="PHYSICAL">Physical</option>
+          <option value="SENSORY">Sensory</option>
+          <option value="MENTAL">Physical</option>
+          {/* ("INTELLECTUAL", "Intellectual"),
+    ("PHYSICAL", "Physical"),
+    ("SENSORY", "Sensory"),
+    ("MENTAL", "Mental")] */}
+        {/* ("EDUCATION", "Education"),
+    ("ENTERTAINMENT", "Entertainment"),
+    ("CLOTHING", "Clothing"),
+    ("CUISINE&DINING", "Cuisine&Dining"),
+    ("TRANSPORTATION", "Transportation"),
+    ("HOBBY", "Hobby"), */}
+        </select>
+    <br />
+    <label>Purpose: </label>
+        <select id="purposes">
+          <option value="EDUCATION">Education</option>
+          <option value="ENTERTAINMENT">Physical</option>
+          <option value="CLOTHING">Sensory</option>
+          <option value="CUISINEDINING">Cuisine & Dining</option>
+          <option value="TRANSPORTATION">Transportation</option>
+          <option value="HOBBY">Hobby</option>
+          </select>
         <br />
         <input type="submit" />
       </form>

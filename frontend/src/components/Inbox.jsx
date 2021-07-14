@@ -13,7 +13,6 @@ const Inbox = (props) => {
     const thisuser = localStorage.getItem('user');
     const regex = /{"username":"(\w+)"}/
     setUser(thisuser.match(regex)[1])
-    console.log(user)
     // setUser(thisuser['username']);
     // const messages = await axios.get(`http://127.0.0.1:8000/api/directmessages/`)
     const messages = await axios.get(`http://127.0.0.1:8000/messages/${props.name}`)
@@ -36,7 +35,6 @@ const Inbox = (props) => {
       const thisuser = localStorage.getItem('user');
       const regex = /{"username":"(\w+)"}/
       setUser(thisuser.match(regex)[1])
-      console.log(user)
     }
     fetchMessages()
     return () => {
