@@ -11,7 +11,7 @@ from comment.forms import AddComment
 from posts.models import Post
 from notifications.models import Notifications
 from customuser.models import CustomUser
-from api.serializers import CommentCreateApiViewSerializer
+from api.serializers import CommentCreateApiViewSerializer, CommentApiViewSerializer
 
 
 class CreateCommentView(LoginRequiredMixin, View):
@@ -52,7 +52,7 @@ def like_view(request, com_id):
 
 def dislike_view(request, com_id):
     comment = Comment.objects.get(id=com_id)
-    comment.dislikes -= 1
+    comment.dislikes += 1
     comment.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -97,3 +97,21 @@ def delete_dm(request, pk):
   except:
     return Response({}, status=404)
   return Response({}, status=201)
+
+@api_view(['GET'])
+def api_like(request, comment_id, *args, **kwargs):
+    comment = Comment.objects.get(id=comment_id)
+    comment.likes += 1
+    comment.save()
+    serializer = CommentApiViewSerializer(comment)
+    if serializer.is_valid():
+        return Response(serializer.data, status=200)
+
+@api_view(['GET'])
+def api_dislike(request, comment_id, *args, **kwargs):
+    comment = Comment.objects.get(id=comment_id)
+    comment.dislikes += 1
+    comment.save()
+    serializer = CommentApiViewSerializer(comment)
+    if serializer.is_valid():
+        return Response(serializer.data, status=200)
