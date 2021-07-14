@@ -15,6 +15,7 @@ const PostDetail = ({postId}) => {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/${postId}/`);
     setPost(res.data);
     fetchUser(res.data.user)
+    console.log(user)
   }
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const PostDetail = ({postId}) => {
         <h2>{post.title}</h2>
         <img src={post.product_image} style={{'maxWidth': "20vw"}}/>
         <br />
-        { user.username }
+        <Link to={`/user/${user.id}`}>{ user.username }</Link>
         <br />
         { post.description }
       </div>

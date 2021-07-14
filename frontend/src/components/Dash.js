@@ -20,6 +20,7 @@ import Notifications from './Notifications';
 import DirectMessage from './DirectMessage';
 import CreatePost from './CreatePost';
 import Suggestions from './Suggestions';
+import ProfilePage from './ProfilePage';
 
 const Dash = props => {
   let name = ['','']
@@ -32,7 +33,7 @@ const Dash = props => {
         <>
          <Container fluid>
                 <Row>
-                    <Col xs={2} id="sidebar-wrapper">      
+                    <Col xs={2} id="sidebar-wrapper">
                       <Sidebar />
                     </Col>
                     <Col  xs={10} id="page-content-wrapper">
@@ -49,6 +50,7 @@ const Dash = props => {
           <Route exact path="/createmessage" render={() => <DirectMessage />} />
           <Route exact path="/createpost" render={() => <CreatePost />} />
           <Route exact path="/suggestions" render={() => <Suggestions />} />
+          <Route exact path="/user/:id" render={(props) => <ProfilePage { ...props } /> } />
         </Switch>
                     </Col> 
                 </Row>
