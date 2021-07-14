@@ -5,7 +5,6 @@ const Comment = (props) => {
   const [user, setUser] = useState({})
   const [likes, setLikes] = useState(0)
   const [dislikes, setDislikes] = useState(0)
-  console.log(props)
 
   const fetchUser = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/customuser/${props.user}`)
@@ -14,6 +13,18 @@ const Comment = (props) => {
   const deleteComment = async () => {
     const res = await axios.delete(`http://127.0.0.1:8000/api/post/${props.id}`);
   }
+  const addLike = async () => {
+  const url = `http://127.0.0.1:8000/comment/${props.id}/addlike/`
+  await axios.get(url)
+  setLikes(likes + 1)
+  }
+
+  const addDislike = async () => {
+    const url = `http://127.0.0.1:8000/comment/${props.id}/adddislike/`
+    await axios.get(url)
+    setDislikes(dislikes + 1)
+  }
+
   useEffect(() => {
     fetchUser()
     setLikes(props.likes)
@@ -32,7 +43,7 @@ const Comment = (props) => {
       <br />
       { props.body }
       <br />
-      <button>Likes { props.likes }</button> <a href={ `http://127.0.0.1:8000/comment/${props.id}/adddislike` } ><button>Dislikes { props.dislikes }</button></a>
+      <button onClick={addLike}>Likes { props.likes }</button> <button onClick={addDislike}>Dislikes { props.dislikes }</button>
       </div>
     </div>
   )
