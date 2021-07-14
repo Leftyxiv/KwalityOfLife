@@ -23,9 +23,9 @@ from django.conf.urls.static import static
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, PostAPIView
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail, get_my_id, get_all_users
 from notifications.views import notification_view, get_notifications
-from comment.views import CreateCommentView, like_view, dislike_view, create_comment
+from comment.views import CreateCommentView, like_view, dislike_view, create_comment, api_like, api_dislike
 from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox, send_dm
-from suggestion.views import SuggestionFormView
+from suggestion.views import SuggestionFormView, send_suggestion
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -63,6 +63,8 @@ urlpatterns = [
 
     # REACT comment view
     path('post/<int:post_id>/comment/', create_comment),
+    path('comment/<int:comment_id>/addlike/', api_like),
+    path('comment/<int:comment_id>/adddislike/', api_dislike),
 
     # notifications
     path('notifications/', notification_view),
@@ -79,6 +81,7 @@ urlpatterns = [
 
     # suggestions
     path('suggestions/create/', SuggestionFormView.as_view()),
+    path('suggestions/send/', send_suggestion),
 
 ]
 

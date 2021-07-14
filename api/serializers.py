@@ -72,7 +72,7 @@ class NotificationsSerializer(HyperlinkedModelSerializer):
 class CommentApiViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['user', 'body', 'created_at', 'likes', 'dislikes']
+        fields = [ 'id', 'user', 'body', 'created_at', 'likes', 'dislikes']
 
 class CommentCreateApiViewSerializer(serializers.ModelSerializer):
     class Meta:
@@ -104,3 +104,8 @@ class PostApiSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
+
+class SuggestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['content']
