@@ -96,8 +96,7 @@ def api_like(request, comment_id, *args, **kwargs):
     comment.likes += 1
     comment.save()
     serializer = CommentApiViewSerializer(comment)
-    if serializer.is_valid():
-        return Response(serializer.data, status=200)
+    return Response(serializer.data, status=200)
 
 @api_view(['GET'])
 def api_dislike(request, comment_id, *args, **kwargs):
@@ -105,5 +104,4 @@ def api_dislike(request, comment_id, *args, **kwargs):
     comment.dislikes += 1
     comment.save()
     serializer = CommentApiViewSerializer(comment)
-    if serializer.is_valid():
-        return Response(serializer.data, status=200)
+    return Response(serializer.data, status=200)

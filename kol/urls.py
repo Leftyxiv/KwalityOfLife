@@ -63,8 +63,8 @@ urlpatterns = [
 
     # REACT comment view
     path('post/<int:post_id>/comment/', create_comment),
-    path('comment/<int:comment_id>/addlike', api_like),
-    path('comment/<int:comment_id>/adddislike', api_dislike),
+    path('comment/<int:comment_id>/addlike/', api_like),
+    path('comment/<int:comment_id>/adddislike/', api_dislike),
 
     # notifications
     path('notifications/', notification_view),
