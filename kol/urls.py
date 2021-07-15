@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, posts_view, PostAPIView
-from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail, get_my_id, get_all_users
+from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail, get_my_id, get_all_users, UserAPIView
 from notifications.views import notification_view, get_notifications
 from comment.views import CreateCommentView, like_view, dislike_view, create_comment, api_like, api_dislike
 from directmessages.views import inbox_view, sent_view, FormView, get_inbox, get_outbox, send_dm
@@ -53,6 +53,7 @@ urlpatterns = [
     # All Author's posts together
     path('author/<int:author_id>/', author_detail),
     path('post/<int:post_id>/delete', delete_post),
+    path('info/myinfo/', csrf_exempt(UserAPIView.as_view())),
 
     # REACT user views
     path('users/getme/<str:username>/', get_my_id),
