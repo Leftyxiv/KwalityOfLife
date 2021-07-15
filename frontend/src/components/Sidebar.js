@@ -35,6 +35,9 @@ const Side = props => {
             <li>
                 <Link to="/suggestions">Suggestions</Link>
             </li>
+            <li>
+                <Link to="/myinfo">My Info</Link>
+            </li>
             </ul>
             {/* <Nav.Item>
                 <Nav.Link eventKey="disabled" disabled>

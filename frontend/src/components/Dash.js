@@ -21,6 +21,7 @@ import DirectMessage from './DirectMessage';
 import CreatePost from './CreatePost';
 import Suggestions from './Suggestions';
 import ProfilePage from './ProfilePage';
+import MyInfo from './MyInfo';
 
 const Dash = props => {
   let name = ['','']
@@ -40,7 +41,7 @@ const Dash = props => {
                     <Switch>
           <Route exact path="/" render={() => <Landing />} />
           <Route exact path="/feed" render={() => <PostList />} />
-          <Route exact path="/signup" render={() => <SignupForm />} />
+          {/* <Route exact path="/signup" render={() => <SignupForm />} /> */}
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
           
@@ -51,6 +52,7 @@ const Dash = props => {
           <Route exact path="/createpost" render={() => <CreatePost />} />
           <Route exact path="/suggestions" render={() => <Suggestions />} />
           <Route exact path="/user/:id" render={(props) => <ProfilePage { ...props } /> } />
+          <Route exact path="/myinfo" render={(props) => <MyInfo { ...props } /> } />
         </Switch>
                     </Col> 
                 </Row>
