@@ -143,20 +143,17 @@ class UserAPIView(APIView):
 
   def post(self, request, *args, **kwargs):
     serializer = UserUpdateSerializer(data=request.data)
-    print(request.data)
+    # print(request.data)
     user = request.user
-    user.avatar = request.data['avatar']
-    # user.save()
-    # print(user.avatar)
     print(serializer.initial_data)
     if serializer.is_valid():
-        print(serializer.data)
-        # user = request.user
-        # user.avatar = serializer.data['avatar']
-        # user.first_name = serializer.data['first_name']
-        # user.last_name = serializer.data['last_name']
-        # user.email = serializer.data['email']
-        # user.save()
+        # serializer.avatar = serializer.validated_data['avatar']
+        # print(serializer.data)
+        # print(request.data['avatar'])
+        user = request.user
+        serializer.user = user
+        print(user.avatar)
+        serializer.save()
         return Response(serializer.data, status=201)
     else:
       print(serializer.errors)

@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 import { signupUser } from './SignupActions';
 

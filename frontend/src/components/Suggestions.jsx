@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const Suggestions = (props) => {
   const [suggestion, setSuggestion] = useState("");
-  const [user, setUser] = useState(-1)
+  // const [user, setUser] = useState(-1)
   
   const onSubmit = async (e) => {
     e.preventDefault();
