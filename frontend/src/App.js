@@ -13,6 +13,7 @@ import Landing from './components/Landing';
 // import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dash';
 import requireAuth from './components/RequireAuth';
+import SignupForm from './components/SignupForm';
 import './App.css'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Navbar />
         <Switch>
         <Route exact path='/' component={Landing} />
+        <Route exact path="/signup" render={() => <SignupForm /> } />
         <Route exact path='/*' component={requireAuth(Dashboard)} />
         </Switch>
         </div>
