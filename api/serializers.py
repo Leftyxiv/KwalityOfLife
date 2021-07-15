@@ -109,3 +109,13 @@ class SuggestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ['content']
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'avatar',
+            'first_name',
+            'last_name',
+            'email',
+        ]

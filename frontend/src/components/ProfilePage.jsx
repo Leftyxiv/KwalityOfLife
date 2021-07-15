@@ -25,12 +25,12 @@ const ProfilePage = (props) => {
   return (
     <div style={{ 'paddingTop': '150px' }}>
       <div className="card">
-          <img src={user.avatar} class="card-img-top" alt={`${user.username}'s avatar`} />
-          <div class="card-body">
-            <h4 class="card-title">{ `${user.username}` }</h4>
-            <h5 class="card-title">{ `${user.first_name}  ${user.last_name}` }</h5>
-            <p class="card-text">{ user.email }</p>
-            <Link to="/createmessage" class="btn btn-primary">Send Message</Link>
+          <img src={user.avatar} className="card-img-top" alt={`${user.username}'s avatar`} />
+          <div className="card-body">
+            <h4 className="card-title">{ `${user.username}` }</h4>
+            <h5 className="card-title">{ `${user.first_name}  ${user.last_name}` }</h5>
+            <p className="card-text">{ user.email }</p>
+            <Link to="/createmessage" className="btn btn-primary">Send Message</Link>
           </div>
       </div>
     </div>
