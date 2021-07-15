@@ -68,6 +68,7 @@ urlpatterns = [
 
     # notifications
     path('notifications/', notification_view),
+    # REACT notifications
     path('notifications/<str:username>/', get_notifications),
 
     # messages
@@ -81,6 +82,7 @@ urlpatterns = [
 
     # suggestions
     path('suggestions/create/', SuggestionFormView.as_view()),
+    # REACT suggestions
     path('suggestions/send/', send_suggestion),
 
 ]

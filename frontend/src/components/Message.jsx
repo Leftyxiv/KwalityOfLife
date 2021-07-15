@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
 import './Message.css';
 
-const Message = ({ message, inbox }) => {
+const Message = ({ message, inbox, auth }) => {
   const [user, setUser] = useState({})
   let idToRequest;
   const fetchUser = async () => {
@@ -14,7 +15,7 @@ const Message = ({ message, inbox }) => {
     }
     const res = await axios.get(`http://127.0.0.1:8000/api/customuser/${idToRequest}`, {
       headers: {
-        'Authorization': `Token ${localStorage.getItem('token')}`
+        'Authorization': `Token ${auth.token}`
       }
     });
     setUser(res.data)
@@ -32,4 +33,8 @@ const Message = ({ message, inbox }) => {
   )
 }
 
-export default Message
+const mapStateToProps = state => {
+  return { auth: state.auth }
+}
+
+export default connect(mapStateToProps)(Message);

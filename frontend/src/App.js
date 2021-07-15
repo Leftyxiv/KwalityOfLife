@@ -1,6 +1,7 @@
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 import { Route } from 'react-router';
+import { Switch } from 'react-router';
 
 import Root from './Root';
 
@@ -21,37 +22,10 @@ function App() {
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
         <div className='bars'>
         <Navbar />
+        <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/*' component={requireAuth(Dashboard)} />
-        {/* <Switch>
-          <Route exact path="/" render={() => <Landing />} />
-          <Route exact path="/feed" render={() => <PostList />} />
-          <Route exact path="/signup" render={() => <SignupForm />} />
-          <Route exact path="/login" render={() => <LoginForm />} />
-        </Switch> */}
-        {/* <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/post/:id">
-            <PostDetail />
-          </Route>
-          <Route path="/author/:id">
-            <AuthorDetail />
-          </Route>
-          <Route path="/addpost">
-            <CreatePost />
-          </Route>
-          <Route path="/myaccount">
-            <ChangeUserDetail />
-          </Route>
-        </Switch> */}
+        </Switch>
         </div>
       </Root>
     </div>
