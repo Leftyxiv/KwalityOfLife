@@ -15,7 +15,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from notifications.models import Notifications
 
-from api.serializers import CommentSerializer, CommentApiViewSerializer, PostApiSerializer
+from api.serializers import CommentSerializer, CommentApiViewSerializer, PostApiSerializer, PostSerializer
 
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
@@ -83,7 +83,6 @@ def get_comments(request, post_id, *args, **kwargs):
     return Response(data, status=200)
   return Response({}, status=400)
 
-<<<<<<< HEAD
 
 def posts_view(request):
   if request.method == 'POST':
@@ -96,7 +95,6 @@ def posts_view(request):
         return HttpResponseRedirect(f'{disability}%20{purpose}')
   posts = Post.objects.all()
   return render(request, 'post_index.html', {'posts': posts})
-=======
 # @csrf_exempt
 class PostAPIView(APIView):
   parser_classes = (MultiPartParser, FormParser)
@@ -114,4 +112,3 @@ class PostAPIView(APIView):
     else:
       print(serializer.errors)
       return Response(serializer.errors, status=400)
->>>>>>> post create route is in and works

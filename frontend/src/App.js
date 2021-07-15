@@ -22,7 +22,7 @@ function App() {
         <div className='bars'>
         <Navbar />
         <Route exact path='/' component={Landing} />
-        <Route exact path='/*' component={requireAuth(Dashboard)} />
+        <Route exact path='/*' component={Dashboard} />
         {/* <Switch>
           <Route exact path="/" render={() => <Landing />} />
           <Route exact path="/feed" render={() => <PostList />} />
