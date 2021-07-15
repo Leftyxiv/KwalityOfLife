@@ -5,7 +5,6 @@ import axios from 'axios';
 // import Form from 'react-bootstrap/Form';
 import './LoginForm.css';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 

@@ -2,16 +2,13 @@
 
 import React from "react";
 import { Switch, Route } from 'react-router';
-import {Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import {Container, Row, Col } from "react-bootstrap";
 import { withRouter } from "react-router";
 import Sidebar from "./Sidebar";
 import './Dash.css';
 
-import Navbar from './Navbar';
 import Landing from './Landing';
-import PostCard from './PostCard';
 import PostList from './PostList';
-import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import PostWrapper from './PostWrapper';
 import Inbox from './Inbox';

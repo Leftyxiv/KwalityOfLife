@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { v4 as uuidv4 } from 'uuid';
-import { push } from 'connected-react-router';
 
 
 const CreatePost = (props) => {

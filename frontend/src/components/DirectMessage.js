@@ -11,7 +11,7 @@ const DirectMessage = (props) => {
   const [me, setMe] = useState(-1);
 
   const fetchInfo = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/users/all/');
+    const res = await axios.get('http://127.0.0.1:8000/users/all');
     setUsers(res.data);
   }
   const getMe = () => {

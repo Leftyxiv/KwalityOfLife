@@ -19,6 +19,7 @@ const MyInfo = (props) => {
     setLast(res.data.last_name)
     setEmail(res.data.email)
     setUsername(res.data.username)
+    console.log(res.data.avatar)
     setAvatar(res.data.avatar)
   }
   useEffect(() => {
@@ -62,7 +63,7 @@ const MyInfo = (props) => {
         <label>Email: </label>
         <input type='text' name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
-        <img src={avatar} style={{'width':'100px', 'height':'100px'}} />
+        <img src={`http://127.0.0.1:8000${avatar}`} style={{'width':'100px', 'height':'100px'}} />
         <label>Avatar: </label>
         <input type="file" id="avatar" accept="image/png, image/jpg" onChange={handleImageChange} />
         <br />
