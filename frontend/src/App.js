@@ -7,13 +7,10 @@ import Root from './Root';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
-// import PostCard from './components/PostCard';
-// import PostList from './components/PostList';
-// import SignupForm from './components/SignupForm';
-// import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dash';
 import requireAuth from './components/RequireAuth';
 import SignupForm from './components/SignupForm';
+import LoginForm from './components/LoginForm';
 import './App.css'
 
 function App() {
@@ -24,8 +21,8 @@ function App() {
         <div className='bars'>
         <Navbar />
         <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route exact path="/signup" render={() => <SignupForm /> } />
+        <Route exact path='/' render={() => <Landing Component={LoginForm}/>} />
+        <Route exact path="/signup" render={() => <Landing Component={SignupForm} /> } />
         <Route exact path='/*' component={requireAuth(Dashboard)} />
         </Switch>
         </div>
