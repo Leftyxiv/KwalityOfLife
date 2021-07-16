@@ -17,6 +17,10 @@ const PostDetail = ({postId}) => {
     fetchUser(res.data.user)
   }
 
+  const deletePost = async () => {
+    const res = await axios.delete(`http://127.0.0.1:8000/api/post/${postId}`);
+  }
+
   useEffect(() => {
     fetchPost()
     return () => {
@@ -33,6 +37,7 @@ const PostDetail = ({postId}) => {
         <br />
         { post.description }
       </div>
+      <button onClick={deletePost}>Delete</button>
       <div>
       <br />
       <Link to="/feed">Go back!</Link>
