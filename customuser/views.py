@@ -9,13 +9,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # Create your views here.
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from customuser.forms import CustomUserChangeForm, CustomUserCreationForm, LoginForm
 from customuser.models import CustomUser
-from api.serializers import CustomUserSerializer
+from api.serializers import CustomUserSerializer, UserUpdateSerializer
 
 # Create your views here.
 # SignUp
@@ -133,11 +135,41 @@ def get_all_users(request, *args, **kwargs):
         name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
     return Response(name_list, status=200)
 
-@api_view(['DELETE'])
-def delete_dm(request, pk):
-  try:
-    user = CustomUser.objects.get(pk=pk)
-    user.delete()
-  except:
-    return Response({}, status=404)
-  return Response({}, status=201)
+# @api_view(['DELETE'])
+# def delete_dm(request, pk):
+#   try:
+#     user = CustomUser.objects.get(pk=pk)
+#     user.delete()
+#   except:
+#     return Response({}, status=404)
+#   return Response({}, status=201)
+class UserAPIView(APIView):
+  parser_classes = (MultiPartParser, FormParser)
+
+  def get(self, request, *args, **kwargs):
+    posts = CustomUser.objects.all()
+    serializer = CustomUserSerializer(posts, many=True)
+    return Response(serializer.data)
+
+  def post(self, request, *args, **kwargs):
+    serializer = UserUpdateSerializer(data=request.data)
+    # print(request.data)
+    user = request.user
+    print(serializer.initial_data)
+    if serializer.is_valid():
+        # serializer.avatar = serializer.validated_data['avatar']
+        # print(serializer.data)
+        # print(request.data['avatar'])
+        user = request.user
+        serializer.user = user
+        print(user.avatar)
+        serializer.save()
+        return Response(serializer.data, status=201)
+    else:
+      print(serializer.errors)
+      return Response(serializer.errors, status=400)
+    
+  def delete(self, request, pk):
+      dm = self.get_objects(pk)
+      dm.delete()
+      return Response(status=200)
