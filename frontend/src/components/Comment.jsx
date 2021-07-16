@@ -12,7 +12,7 @@ const Comment = (props) => {
     setUser(res.data)
   }
   const deleteComment = async () => {
-    const res = await axios.delete(`http://127.0.0.1:8000/api/post/${props.id}`);
+    const res = await axios.delete(`http://127.0.0.1:8000/api/comment/${props.id}`);
   }
   const addLike = async () => {
   const url = `http://127.0.0.1:8000/comment/${props.id}/addlike/`
@@ -44,7 +44,7 @@ const Comment = (props) => {
       <br />
       { props.body }
       <br />
-      <button onClick={addLike}>Likes { props.likes }</button> <button onClick={addDislike}>Dislikes { props.dislikes }</button>
+      <button onClick={addLike}>Likes { likes }</button> <button onClick={addDislike}>Dislikes { dislikes }</button>
       </div>
       <button onClick={deleteComment}>X</button>
     </div>
