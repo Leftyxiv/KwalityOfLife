@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './Message.css';
 
-const Message = ({ key, message, inbox }) => {
+const Message = ({ message, inbox }) => {
   const [user, setUser] = useState({})
   let idToRequest;
   const fetchUser = async () => {
@@ -20,7 +20,7 @@ const Message = ({ key, message, inbox }) => {
     setUser(res.data)
   }
   const deleteMessage = async () => {
-    const res = await axios.delete(`http://127.0.0.1:8000/api/post/${key}`);
+    const res = await axios.delete(`http://127.0.0.1:8000/api/directmessages/${message.id}`);
   }
   useEffect(() => {
     fetchUser()

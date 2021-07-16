@@ -133,3 +133,12 @@ def get_all_users(request, *args, **kwargs):
         serializer = CustomUserSerializer(user)
         name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
     return Response(name_list, status=200)
+
+@api_view(['DELETE'])
+def delete_dm(request, pk):
+  try:
+    user = CustomUser.objects.get(pk=pk)
+    user.delete()
+  except:
+    return Response({}, status=404)
+  return Response({}, status=201)
