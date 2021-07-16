@@ -28,7 +28,7 @@ const Navbar = (props) => {
   return (
     <nav className='head'>
       <div className='head-wrapper'>
-        <a className='logo' href='/'>Logo</a>
+        <a className='logo' href='/'><img src="http://127.0.0.1:8000/uploads/kolologo.png" alt='logo' /></a>
 
 
       </div>

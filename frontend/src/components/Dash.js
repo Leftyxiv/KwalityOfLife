@@ -34,7 +34,7 @@ const Dash = props => {
                     <Col xs={2} id="sidebar-wrapper">
                       <Sidebar />
                     </Col>
-                    <Col  xs={10} id="page-content-wrapper">
+                    <Col  xs={10} id="page-content-wrapper" style={{'paddingTop': '75px'}}>
                     <Switch>
           <Route exact path="/" render={() => <Landing />} />
           <Route exact path="/feed" render={() => <PostList />} />

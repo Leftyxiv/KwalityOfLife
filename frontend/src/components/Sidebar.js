@@ -7,7 +7,7 @@ import './Sidebar.css'
 
 const Side = props => {
     return (
-        <>
+        <div style={{'paddingTop': '75px'}}>
             <Nav className="col-md-12 d-none d-md-block bg-light sidebar"
             activeKey="/home"
             // onSelect={selectedKey => alert(`selected ${selectedKey}`)}
@@ -46,7 +46,7 @@ const Side = props => {
             </Nav.Item> */}
             </Nav>
           
-        </>
+        </div>
         );
   };
   const Sidebar = withRouter(Side);

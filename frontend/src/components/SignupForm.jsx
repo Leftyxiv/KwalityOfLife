@@ -25,7 +25,8 @@ const SignupForm = (props) => {
       props.signupUser(userData)
     }
     return (
-      <div className='form-bg' style={{ 'top':'150px'}}>
+      <div className='form-bg'> 
+      {/* style={{ 'top':'150px'}}> */}
         <form onSubmit={onSub}>
           <h2>Sign Up!</h2>
           <label style={{'color': 'black'}}>Username </label>
