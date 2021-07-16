@@ -8,7 +8,6 @@ import './PostWrapper.css';
 const PostWrapper = (props) => {
   const [statething, setStateThingy] = useState(1)
   useEffect(() => {
-    console.log(statething)
   }, [statething])
   const postId = props.match.params.postId;
   return (

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
+import './DirectMessage.css';
+
 const DirectMessage = (props) => {
   const [text, setText] = useState("");
   const [users, setUsers] = useState([]);
@@ -11,7 +13,7 @@ const DirectMessage = (props) => {
   const [me, setMe] = useState(-1);
 
   const fetchInfo = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/users/all/');
+    const res = await axios.get('http://127.0.0.1:8000/users/all');
     setUsers(res.data);
   }
   const getMe = () => {
@@ -62,15 +64,18 @@ const DirectMessage = (props) => {
 
 
   return (
-    <div style={{ 'paddingTop': '200px' }}>
+    <div id='message-form' style={{'display': 'flex', 'justifyContent': 'center' }}>
       <form onSubmit={onSubmit}>
-        <label>Recipient: </label>
-        <input type='text' value={recipient} onChange={e => setRecipient(e.target.value)}/>
+        <div className='form-group'>
+          <h2 style={{'color': 'white'}}>Send a message!</h2>
+        {/* <label>Recipient: </label> */}
+        <input type='text' className='form-control' placeholder='Recipient' value={recipient} onChange={e => setRecipient(e.target.value)}/>
         <br />
-        <label>Message: </label>
-        <textarea value={text} onChange={e => setText(e.target.value)} />
+        {/* <label>Message: </label> */}
+        <textarea className='form-control' placeholder='Message....' value={text} onChange={e => setText(e.target.value)} />
         <br />
-        <input type='submit' />
+        <input type='submit' className='btn btn-primary btn-lg'/>
+        </div>
       </form>
     </div>
   )

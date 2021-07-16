@@ -1,9 +1,19 @@
 .form-bg {
   background-color: lightgrey;
   width: 20vw;
-  position: relative;
+  /* position: relative;
   left: 45vw;
-  top: 45vh;
+  top: 45vh; */
   padding-bottom: 10px;
   border-radius: 20px;
+}
+
+#signup-form {
+  border: 2px solid rebeccapurple;
+  padding-top: 5vh;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  padding-bottom: 5vh;
+  border-radius: 20px;
+  background-color: lightblue;
 }

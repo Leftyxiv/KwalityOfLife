@@ -5,7 +5,7 @@ import { UserTypes } from './SignupTypes';
 
 export const signupUser = (userData) => dispatch => {
   dispatch({ type: UserTypes.CREATE_USER_SUBMITTED });
-  axios.post('/api/users/', userData).then((res) => {
+  axios.post('http://127.0.0.1:8000/api/users/', userData).then((res) => {
     toast.success(`Account for ${userData.username} created! Please log in.`)
     dispatch({ type: UserTypes.CREATE_USER_SUCCESS });
   })
