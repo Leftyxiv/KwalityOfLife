@@ -101,7 +101,7 @@ class PostAPIView(APIView):
 
   def get(self, request, *args, **kwargs):
     posts = Post.objects.all()
-    serializer = PostSerializer(posts, many=True)
+    serializer = PostApiSerializer(posts, many=True)
     return Response(serializer.data)
 
   def post(self, request, *args, **kwargs):
@@ -112,4 +112,9 @@ class PostAPIView(APIView):
     else:
       print(serializer.errors)
       return Response(serializer.errors, status=400)
+
+  def delete(self, request, pk):
+    post = self.get_object(pk)
+    post.delete()
+    return Response(status=200)
 

@@ -20,6 +20,9 @@ const Message = ({ message, inbox, auth }) => {
     });
     setUser(res.data)
   }
+  const deleteMessage = async () => {
+    const res = await axios.delete(`http://127.0.0.1:8000/api/directmessages/${message.id}`);
+  }
   useEffect(() => {
     fetchUser()
     return () => {
@@ -29,6 +32,7 @@ const Message = ({ message, inbox, auth }) => {
   return (
     <div>
       <img src={user.avatar} height="50px" width="50px" /> <b>{ user.username } </b> -- { message.content } -- Message sent at { message.created_at } {inbox === true ? `from ${ user.username }`: "" }
+      <button onClick={deleteMessage}>X</button>
     </div>
   )
 }

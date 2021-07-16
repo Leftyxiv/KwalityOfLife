@@ -135,6 +135,14 @@ def get_all_users(request, *args, **kwargs):
         name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
     return Response(name_list, status=200)
 
+# @api_view(['DELETE'])
+# def delete_dm(request, pk):
+#   try:
+#     user = CustomUser.objects.get(pk=pk)
+#     user.delete()
+#   except:
+#     return Response({}, status=404)
+#   return Response({}, status=201)
 class UserAPIView(APIView):
   parser_classes = (MultiPartParser, FormParser)
 
@@ -160,3 +168,8 @@ class UserAPIView(APIView):
     else:
       print(serializer.errors)
       return Response(serializer.errors, status=400)
+    
+  def delete(self, request, pk):
+      dm = self.get_objects(pk)
+      dm.delete()
+      return Response(status=200)

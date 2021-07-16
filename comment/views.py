@@ -105,3 +105,12 @@ def api_dislike(request, comment_id, *args, **kwargs):
     comment.save()
     serializer = CommentApiViewSerializer(comment)
     return Response(serializer.data, status=200)
+
+@api_view(['DELETE'])
+def delete_dm(request, pk):
+  try:
+    comment = Comment.objects.get(pk=pk)
+    comment.delete()
+  except:
+    return Response({}, status=404)
+  return Response({}, status=201)
