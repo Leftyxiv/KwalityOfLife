@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import './MyInfo.css';
+
 
 const MyInfo = (props) => {
   const [user, setUser] = useState(null);
@@ -52,22 +54,22 @@ const MyInfo = (props) => {
   console.log(res)
   }
   return (
-    <div style={{'paddingTop':'150px'}}>
+    <div id='myinfo-form'>
       <form onSubmit={onSubmit}>
-        <label>First Name: </label>
-        <input type='text' name='fname' value={first} onChange={(e) => setFirst(e.target.value)} />
+        {/* <label>First Name: </label> */}
+        <input type='text' className='form-control' placeholder='First Name' name='fname' value={first} onChange={(e) => setFirst(e.target.value)} />
         <br />
-        <label>Last Name: </label>
-        <input type='text' name='lname' value={last} onChange={(e) => setLast(e.target.value)} />
+        {/* <label>Last Name: </label> */}
+        <input type='text' name='lname' className='form-control' placeholder='Last Name'  value={last} onChange={(e) => setLast(e.target.value)} />
         <br />
-        <label>Email: </label>
-        <input type='text' name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        {/* <label>Email: </label> */}
+        <input type='text' name='email' className='form-control' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
-        <img src={`http://127.0.0.1:8000${avatar}`} style={{'width':'100px', 'height':'100px'}} />
         <label>Avatar: </label>
-        <input type="file" id="avatar" accept="image/png, image/jpg" onChange={handleImageChange} />
+        <img src={`http://127.0.0.1:8000${avatar}`} style={{'width':'100px', 'height':'100px'}} />
+        <input type="file" className='form-control-files' id="avatar" accept="image/png, image/jpg" onChange={handleImageChange} />
         <br />
-        <input type='submit' value='Submit' />
+        <input type='submit' value='Submit' className='btn btn-primary btn-lg'/>
       </form>
     </div>
   )
