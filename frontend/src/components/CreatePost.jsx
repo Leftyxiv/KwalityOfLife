@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+import './CreatePost.css';
 
 const CreatePost = (props) => {
   const [user, setUser] = useState({});
@@ -67,19 +68,21 @@ const CreatePost = (props) => {
     setProduct(e.target.files[0])
   }
   return (
-    <div style={{ 'paddingTop': '150px' }}>
-      <form onSubmit={onSubmit}>
-        <label>Title: </label>
-        <input type='text' id="title" value={title} onChange={e => setTitle(e.target.value)}/>
+    <div style={{ 'paddingTop': '150px', 'width': '30vw', 'display': 'flex', 'justifyContent': 'center' }}>
+      <form onSubmit={onSubmit} id='createFormDiv' style={{'position': 'relative', 'left': '20vw', 'border': '1px solid rgb(211,211,211, .5)'}}>
+      {/* style={{'width': '30vw'}}> */}
+        <div className='form-group'>
+        {/* <label for='title'>Title: </label> */}
+        <input type='text' id="title" className='form-control' placeholder='title' value={title} onChange={e => setTitle(e.target.value)}/>
         <br />
-        <label>Company Website: </label>
-        <input type='text' id="company_website" value={company} onChange={e => setCompany(e.target.value)}/>
+        {/* <label>Company Website: </label> */}
+        <input type='text' id="company_website" className='form-control' placeholder='company website' value={company} onChange={e => setCompany(e.target.value)}/>
         <br />
-        <label>Product Image: </label>
-        <input type="file" id="image" accept="image/png, image/jpg" onChange={handleImageChange} />
+        {/* <label>Product Image: </label> */}
+        <input type="file" id="image" className='form-control-file' accept="image/png, image/jpg" onChange={handleImageChange} />
         <br />
-        <label>Description: </label>
-        <textarea value={description} id="description" onChange={(e) => setDescription(e.target.value)} />
+        {/* <label>Description: </label> */}
+        <textarea className='form-control' placeholder='Description...' value={description} id="description" onChange={(e) => setDescription(e.target.value)} />
         <br />
         <label>Assists with: </label>
         <select id="disability">
@@ -110,6 +113,7 @@ const CreatePost = (props) => {
           </select>
         <br />
         <input type="submit" />
+        </div>
       </form>
     </div>
   )
