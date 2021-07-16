@@ -62,3 +62,12 @@ def send_dm(request, recipient, *arg, **kwargs):
     serializer.save()
     return Response(serializer.data, status=201)
   return Response({}, status=400)
+
+@api_view(['DELETE'])
+def delete_dm(request, pk):
+  try:
+    mess = Message.objects.get(pk=pk)
+    mess.delete()
+  except:
+    return Response({}, status=404)
+  return Response({}, status=201)

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const Notification = ({ user, text }) => {
+const Notification = ({ key, user, text }) => {
   const [thisUser, setUser] = useState({})
 
   const fetchUser = async () => {
@@ -12,6 +12,9 @@ const Notification = ({ user, text }) => {
     })
     setUser(res.data);
   }
+  const deleteNotification = async () => {
+    const res = await axios.delete(`http://127.0.0.1:8000/api/post/${key}`);
+  }
   useEffect(() => {
     fetchUser()
     return () => {
@@ -20,6 +23,7 @@ const Notification = ({ user, text }) => {
   return (
     <div>
       <img src={thisUser.avatar} height="50px" width="50px" /> <b>{ thisUser.username } </b> -- { text } 
+      <button onClick={deleteNotification}>X</button>
     </div>
   )
 }

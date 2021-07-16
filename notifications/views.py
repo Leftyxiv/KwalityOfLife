@@ -28,3 +28,12 @@ def get_notifications(request, username, *args, **kwargs):
   if data:
     return Response(data, status=200)
   return Response({}, status=400)
+
+@api_view(['DELETE'])
+def delete_dm(request, pk):
+  try:
+    notification = Notifications.objects.get(pk=pk)
+    notification.delete()
+  except:
+    return Response({}, status=404)
+  return Response({}, status=201)

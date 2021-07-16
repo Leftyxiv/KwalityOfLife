@@ -88,3 +88,12 @@ def create_comment(request, post_id, *args, **kwargs):
         #     )
         # return HttpResponseRedirect(f'/post/{post.id}/')
         return Response(serializer.data, status=200)
+
+@api_view(['DELETE'])
+def delete_dm(request, pk):
+  try:
+    comment = Comment.objects.get(pk=pk)
+    comment.delete()
+  except:
+    return Response({}, status=404)
+  return Response({}, status=201)
