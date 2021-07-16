@@ -3,6 +3,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import './Suggestion.css';
+
 const Suggestions = (props) => {
   const [suggestion, setSuggestion] = useState("");
   // const [user, setUser] = useState(-1)
@@ -21,12 +23,12 @@ const Suggestions = (props) => {
   }
 
   return (
-    <div style={{ 'paddingTop': '150px' }}>
-      <h2>Make a suggestion!</h2>
+    <div id='suggestion-form'>
+      <h2 style={{'color': 'white'}}>Make a suggestion!</h2>
       <form onSubmit={onSubmit}>
-        <textarea value={suggestion} onChange={e => setSuggestion(e.target.value)} />
+        <textarea value={suggestion} className='form-control' placeholder='Suggestion...' onChange={e => setSuggestion(e.target.value)} />
         <br />
-        <input type='submit' />
+        <input type='submit' className='btn btn-primary btn-lg' />
       </form>
     </div>
   )
