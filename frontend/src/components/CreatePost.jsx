@@ -112,7 +112,7 @@ const CreatePost = (props) => {
           <option value="HOBBY">Hobby</option>
           </select>
         <br />
-        <input type="submit" />
+        <input type="submit" className='btn btn-primary btn-lg'/>
         </div>
       </form>
     </div>

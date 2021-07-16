@@ -30,16 +30,18 @@ const LoginForm = (props) => {
     // console.log(cookies.get('Bearer'))
   }
   return (
-    <div className='form-bg'>
+    <div className='form-bg' id='login-form'>
       <form onSubmit={onSub}>
+        <div className='form-group'>
         <h2>Log in!</h2>
-        <label style={{'color': 'black'}}>Username </label>
-      <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+        {/* <label style={{'color': 'black'}}>Username </label> */}
+      <input type='text'className='form-control' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}></input>
       <br />
-        <label style={{'color': 'black'}}>Password </label>
-      <input type='password'  value={pass} onChange={(e) => setPass(e.target.value)}></input>
+        {/* <label style={{'color': 'black'}}>Password </label> */}
+      <input type='password' className='form-control' placeholder='Password'  value={pass} onChange={(e) => setPass(e.target.value)}></input>
       <br />
-    <input type='submit' />
+    <input type='submit' className='btn btn-primary btn-lg' />
+        </div>
   </form>
     </div>
   )
