@@ -11,6 +11,7 @@ export const login = (user, redirect) => dispatch => {
           setAxiosToken(auth_token);
           dispatch(setToken(auth_token));
           dispatch(getCurrentUser(redirect, auth_token));
+          // toast('Succesfully logged in')
         }).catch(err => {
             dispatch(unsetCurrentUser());
             toastError(err);
