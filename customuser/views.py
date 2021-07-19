@@ -131,6 +131,7 @@ def get_all_users(request, *args, **kwargs):
     name_list = []
     qs = CustomUser.objects.all()
     for user in qs:
+        # print(user.id)
         serializer = CustomUserSerializer(user)
         name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
     return Response(name_list, status=200)
@@ -167,10 +168,31 @@ class UserAPIView(APIView):
         serializer.save()
         return Response(serializer.data, status=201)
     else:
-      print(serializer.errors)
-      return Response(serializer.errors, status=400)
+        print(serializer.errors)
+        return Response(serializer.errors, status=400)
+
+#   def post(self, request, *args, **kwargs):
+#     serializer = UserUpdateSerializer(data=request.data)
+#     # print(request.data)
+#     # user = request.user
+#     print(serializer.initial_data)
+#     if serializer.is_valid():
+#         # serializer.avatar = serializer.validated_data['avatar']
+#         print(serializer.validated_data)
+#         # print(request.data['avatar'])
+#         user = request.user
+#         serializer.user = user
+#         # del serializer.data['username']
+#         # print(user.avatar)
+#         serializer.save()
+#         return Response(serializer.data, status=201)
+#     else:
+#       print(serializer.errors)
+#       return Response(serializer.errors, status=400)
     
-  def delete(self, request, pk):
-      dm = self.get_objects(pk)
-      dm.delete()
-      return Response(status=200)
+    def delete(self, request, pk):
+        dm = self.get_objects(pk)
+        dm.delete()
+        return Response(status=200)
+    
+

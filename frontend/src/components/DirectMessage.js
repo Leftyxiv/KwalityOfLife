@@ -15,11 +15,14 @@ const DirectMessage = (props) => {
   const fetchInfo = async () => {
     const res = await axios.get('http://127.0.0.1:8000/users/all');
     setUsers(res.data);
+    // console.log(res.data)
   }
   const getMe = () => {
     for(let i = 0; i < users.length; ++i){
       if(users[i]['username'] === props.me.user.username){
+        // console.log(users[i])
         setMe(users[i]['id'])
+        // console.log(me)
       }
     }
   }
@@ -30,7 +33,7 @@ const DirectMessage = (props) => {
     getMe();
     return () => {
     }
-  }, [])
+  }, [recipient])
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +47,7 @@ const DirectMessage = (props) => {
       toast.error('User not found');
     } else {
       try {
-      await axios.post(`http://127.0.0.1:8000/directmessages/${value}/`, {
+      await axios.post(`http://127.0.0.1:8000/messages/dm/${value}/`, {
         sender: me,
         receiver: value,
         content: text
