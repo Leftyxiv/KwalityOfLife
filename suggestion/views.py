@@ -25,6 +25,7 @@ class SuggestionFormView(View):
         Message.objects.create(sender=request.user, receiver=user, content=data['content'])
     return HttpResponseRedirect('/messages/outbox/')
 
+
 @api_view(['POST'])
 def send_suggestion(request, *args, **kwargs):
   users = CustomUser.objects.filter(is_staff=True)
