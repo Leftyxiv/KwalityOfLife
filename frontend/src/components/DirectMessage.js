@@ -15,12 +15,14 @@ const DirectMessage = (props) => {
   const fetchInfo = async () => {
     const res = await axios.get('http://127.0.0.1:8000/users/all');
     setUsers(res.data);
-    console.log(res.data)
+    // console.log(res.data)
   }
   const getMe = () => {
     for(let i = 0; i < users.length; ++i){
       if(users[i]['username'] === props.me.user.username){
+        // console.log(users[i])
         setMe(users[i]['id'])
+        // console.log(me)
       }
     }
   }
@@ -31,7 +33,7 @@ const DirectMessage = (props) => {
     getMe();
     return () => {
     }
-  }, [])
+  }, [recipient])
 
   const onSubmit = async (e) => {
     e.preventDefault();

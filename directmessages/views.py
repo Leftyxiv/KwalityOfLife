@@ -63,9 +63,11 @@ def send_dm(request, recipient, *arg, **kwargs):
   recipient = CustomUser.objects.get(id=recipient)
   print(recipient)
   serializer = DirectMessageApiSerializer(data=request.data)
+  print(serializer.is_valid())
   if serializer.is_valid():
     serializer.save()
     return Response(serializer.data, status=201)
+  print(serializer.errors)
   return Response({}, status=400)
 
 @api_view(['DELETE'])
