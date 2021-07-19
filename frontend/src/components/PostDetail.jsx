@@ -38,7 +38,7 @@ const PostDetail = ({postId}) => {
         <br />
         { post.description }
       </div>
-      <button onClick={deletePost}>Delete</button>
+      <button className='btn-danger' onClick={deletePost}>Delete</button>
       <div>
       <br />
       <Link to="/feed">Go back!</Link>
