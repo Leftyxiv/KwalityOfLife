@@ -152,15 +152,16 @@ class UserAPIView(APIView):
     return Response(serializer.data)
 
   def post(self, request, *args, **kwargs):
-    serializer = UserUpdateSerializer(data=request.data)
-    # print(request.data)
     user = request.user
+    serializer = UserUpdateSerializer(user, data=request.data)
+    # print(request.data)
+    # user = request.user
     print(serializer.initial_data)
     if serializer.is_valid():
         # serializer.avatar = serializer.validated_data['avatar']
         # print(serializer.data)
         # print(request.data['avatar'])
-        user = request.user
+        # user = request.user
         serializer.user = user
         print(user.avatar)
         serializer.save()
