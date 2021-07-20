@@ -15,28 +15,28 @@ const Side = props => {
                 <div className="sidebar-sticky"></div>
                 <ul>
             <li>
-                <Link to="/feed">Feed</Link>
+                <Link className='sidebar-link' to="/feed">Feed</Link>
             </li>
             <li>
-                <Link to="/createpost">Create a post</Link>
+                <Link className='sidebar-link' to="/createpost">Create a post</Link>
             </li>
 
-                <Link to="/inbox">Inbox</Link>
+                <Link className='sidebar-link' to="/inbox">Inbox</Link>
 
             <li>
-                <Link to="/outbox">Outbox</Link>
+                <Link className='sidebar-link' to="/outbox">Outbox</Link>
             </li>
             <li>
-                <Link to="/createmessage">Send Message</Link>
+                <Link className='sidebar-link' to="/createmessage">Send Message</Link>
             </li>
             <li>
-                <Link to="/notifications">Notifications</Link>
+                <Link className='sidebar-link' to="/notifications">Notifications</Link>
             </li>
             <li>
-                <Link to="/suggestions">Suggestions</Link>
+                <Link className='sidebar-link' to="/suggestions">Suggestions</Link>
             </li>
             <li>
-                <Link to="/myinfo">My Info</Link>
+                <Link className='sidebar-link' to="/myinfo">My Info</Link>
             </li>
             </ul>
             {/* <Nav.Item>

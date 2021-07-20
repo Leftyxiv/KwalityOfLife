@@ -45,7 +45,7 @@ const MyInfo = (props) => {
     formData.append('email', email)
     formData.append('username', username)
     formData.append('id', user.id)
-    console.log(imgUpload, imgUpload['name'])
+    // console.log(imgUpload, imgUpload['name'])
   const res =  axios.post(`http://127.0.0.1:8000/info/myinfo/`, formData, {
      headers: {
     'content-type': 'multipart/form-data',
@@ -69,7 +69,7 @@ const MyInfo = (props) => {
         <img src={`http://127.0.0.1:8000${avatar}`} style={{'width':'100px', 'height':'100px'}} />
         <input type="file" className='form-control-files' id="avatar" accept="image/png, image/jpg" onChange={handleImageChange} />
         <br />
-        <input type='submit' value='Submit' className='btn btn-primary btn-lg'/>
+        <input type='submit' value='Submit' className='btn btn-dark btn-lg'/>
       </form>
     </div>
   )

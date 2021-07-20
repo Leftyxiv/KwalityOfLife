@@ -28,7 +28,7 @@ const Suggestions = (props) => {
       <form onSubmit={onSubmit}>
         <textarea value={suggestion} className='form-control' placeholder='Suggestion...' onChange={e => setSuggestion(e.target.value)} />
         <br />
-        <input type='submit' className='btn btn-primary btn-lg' />
+        <input type='submit' className='btn btn-dark btn-lg' />
       </form>
     </div>
   )
