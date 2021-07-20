@@ -77,7 +77,7 @@ const DirectMessage = (props) => {
         {/* <label>Message: </label> */}
         <textarea className='form-control' placeholder='Message....' value={text} onChange={e => setText(e.target.value)} />
         <br />
-        <input type='submit' className='btn btn-primary btn-lg'/>
+        <input type='submit' className='btn btn-dark btn-lg'/>
         </div>
       </form>
     </div>

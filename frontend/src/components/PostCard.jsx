@@ -14,7 +14,7 @@ const PostCard = ({ post }) => {
               <Card.Text>
                 {post.product_website}
               </Card.Text>
-            <Link to={`/post/${post.id}`} ><Button variant="primary">Details!</Button></Link>
+            <Link to={`/post/${post.id}`} ><Button variant="dark">Details!</Button></Link>
           </Card.Body>
         </Card>
     </div>
