@@ -15,14 +15,11 @@ const DirectMessage = (props) => {
   const fetchInfo = async () => {
     const res = await axios.get('http://127.0.0.1:8000/users/all');
     setUsers(res.data);
-    // console.log(res.data)
   }
   const getMe = () => {
     for(let i = 0; i < users.length; ++i){
       if(users[i]['username'] === props.me.user.username){
-        // console.log(users[i])
         setMe(users[i]['id'])
-        // console.log(me)
       }
     }
   }
@@ -71,10 +68,8 @@ const DirectMessage = (props) => {
       <form onSubmit={onSubmit}>
         <div className='form-group'>
           <h2 style={{'color': 'white'}}>Send a message!</h2>
-        {/* <label>Recipient: </label> */}
         <input type='text' className='form-control' placeholder='Recipient' value={recipient} onChange={e => setRecipient(e.target.value)}/>
         <br />
-        {/* <label>Message: </label> */}
         <textarea className='form-control' placeholder='Message....' value={text} onChange={e => setText(e.target.value)} />
         <br />
         <input type='submit' className='btn btn-primary btn-lg'/>

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 const ProfilePage = (props) => {
   const [user, setUser] = useState({});
-  // console.log(props.match.params.id)
 
   const fetchInfo = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/customuser/${props.match.params.id}`, {

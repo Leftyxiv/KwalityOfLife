@@ -2,9 +2,6 @@ from django.shortcuts import render
 from .forms import UserCreationForm
 from posts.models import Post
 
-def add_user(request, *args, **kwargs):
-  form = UserCreationForm()
-  return render(request, 'form.html', context={'form': form})
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from rest_framework.decorators import api_view
@@ -19,6 +16,10 @@ from customuser.forms import CustomUserChangeForm, CustomUserCreationForm, Login
 from customuser.models import CustomUser
 from api.serializers import CustomUserSerializer, UserUpdateSerializer
 
+def add_user(request, *args, **kwargs):
+  form = UserCreationForm()
+  return render(request, 'form.html', context={'form': form})
+
 # Create your views here.
 # SignUp
 def customUserCreation_view(request):
@@ -26,7 +27,6 @@ def customUserCreation_view(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            # form.cleaned_data.get('password')
             if data['password1'] != data['password2']:
                 alert('Passwords must match')
                 return HttpResponseRedirect('/signup/')
@@ -45,37 +45,11 @@ def login_view(request):
         if form.is_valid():
             data = form.cleaned_data
             user = authenticate(request, username=data['username'], password=data['password'])
-            # user = form.save()
             if user: 
                 login(request, user)
             return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
     form = LoginForm()
     return render(request, "form.html", {'form' : form})
-
-# User Edit View
-# def customUserChange_view(request, *args, **kwargs):
-#     item = request.user
-
-#     if request.method == "POST":
-#         form = CustomUserChangeForm(request.POST)
-
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             # item.username = data['username']
-#             item.email = data['email']
-#             item.first_name = data['first_name']
-#             item.last_name = data['last_name']
-#             item.save()
-#             # return HttpResponseRedirect('')
-
-#     form = CustomUserChangeForm(initial={
-#         'username': item.username,
-#         'email' : item.email,
-#         'first_name' : item.first_name,
-#         'last_name' : item.last_name,
-
-#     })
-#     return render(request, "form.html", {"form": form})
 
 
 class CustomUserChangeView(LoginRequiredMixin, View):
@@ -131,19 +105,10 @@ def get_all_users(request, *args, **kwargs):
     name_list = []
     qs = CustomUser.objects.all()
     for user in qs:
-        # print(user.id)
         serializer = CustomUserSerializer(user)
         name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
     return Response(name_list, status=200)
 
-# @api_view(['DELETE'])
-# def delete_dm(request, pk):
-#   try:
-#     user = CustomUser.objects.get(pk=pk)
-#     user.delete()
-#   except:
-#     return Response({}, status=404)
-#   return Response({}, status=201)
 class UserAPIView(APIView):
   parser_classes = (MultiPartParser, FormParser)
 
@@ -155,14 +120,8 @@ class UserAPIView(APIView):
   def post(self, request, *args, **kwargs):
     user = request.user
     serializer = UserUpdateSerializer(user, data=request.data)
-    # print(request.data)
-    # user = request.user
     print(serializer.initial_data)
     if serializer.is_valid():
-        # serializer.avatar = serializer.validated_data['avatar']
-        # print(serializer.data)
-        # print(request.data['avatar'])
-        # user = request.user
         serializer.user = user
         print(user.avatar)
         serializer.save()
@@ -171,26 +130,7 @@ class UserAPIView(APIView):
         print(serializer.errors)
         return Response(serializer.errors, status=400)
 
-#   def post(self, request, *args, **kwargs):
-#     serializer = UserUpdateSerializer(data=request.data)
-#     # print(request.data)
-#     # user = request.user
-#     print(serializer.initial_data)
-#     if serializer.is_valid():
-#         # serializer.avatar = serializer.validated_data['avatar']
-#         print(serializer.validated_data)
-#         # print(request.data['avatar'])
-#         user = request.user
-#         serializer.user = user
-#         # del serializer.data['username']
-#         # print(user.avatar)
-#         serializer.save()
-#         return Response(serializer.data, status=201)
-#     else:
-#       print(serializer.errors)
-#       return Response(serializer.errors, status=400)
-    
-    def delete(self, request, pk):
+  def delete(self, request, pk):
         dm = self.get_objects(pk)
         dm.delete()
         return Response(status=200)

@@ -16,9 +16,7 @@ export default function(Component){
 
     checkAuth(){
       if(!this.props.authenticated){
-        // const redirect = this.props.location.pathname;
         this.props.dispatch(push(`/`));
-       // login?next=${redirect}))
       }
     }
 

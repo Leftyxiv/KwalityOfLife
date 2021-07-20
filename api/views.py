@@ -1,8 +1,3 @@
-from django.db.models.base import Model
-from django.shortcuts import render
-from rest_framework import serializers
-from rest_framework.decorators import action
-
 from rest_framework.viewsets import ModelViewSet
 
 from api.serializers import CommentSerializer, PostSerializer, CustomUserSerializer, DirectMessageSerializer, NotificationsSerializer

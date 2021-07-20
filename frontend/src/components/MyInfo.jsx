@@ -26,7 +26,6 @@ const MyInfo = (props) => {
   }
   useEffect(() => {
     fetchUser()
-    // console.log(props.user.user.username)
   }, []);
 
   const handleImageChange = (e) => {
@@ -56,13 +55,10 @@ const MyInfo = (props) => {
   return (
     <div id='myinfo-form'>
       <form onSubmit={onSubmit}>
-        {/* <label>First Name: </label> */}
         <input type='text' className='form-control' placeholder='First Name' name='fname' value={first} onChange={(e) => setFirst(e.target.value)} />
         <br />
-        {/* <label>Last Name: </label> */}
         <input type='text' name='lname' className='form-control' placeholder='Last Name'  value={last} onChange={(e) => setLast(e.target.value)} />
         <br />
-        {/* <label>Email: </label> */}
         <input type='text' name='email' className='form-control' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
         <label>Avatar: </label>

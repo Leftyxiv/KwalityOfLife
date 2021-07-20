@@ -40,12 +40,7 @@ urlpatterns = [
     path('myaccount/', CustomUserChangeView.as_view()),
     path('logout/', loggedOut_view),
 
-    # auth views for the front end
-    
-
     # post views
-    # path('post/', posts_view),
-    # path('post/<str:dis>%20<str:pur>/', sorted_choices),
     path('addpost/', PostFormView.as_view()),
     path('post/create/', csrf_exempt(PostAPIView.as_view())),
     path('post/<int:post_id>/', post_detail_view),

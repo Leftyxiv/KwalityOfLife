@@ -12,13 +12,10 @@
 .bg-wrapper {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   flex-direction: column;
 }
 
 #login-form {
-  /* position: 'relative';
-  left: 20vw; */
   border: 2px solid rebeccapurple;
   padding-top: 5vh;
   padding-left: 3vw;

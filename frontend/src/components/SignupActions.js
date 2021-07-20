@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { isEmpty } from '../utils/Utils';
 import { UserTypes } from './SignupTypes';
 
 export const signupUser = (userData) => dispatch => {

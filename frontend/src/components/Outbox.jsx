@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { connect } from 'react-redux';
 
 import Message from './Message';
 import './Inbox.css'
@@ -18,7 +17,6 @@ const Outbox = (props) => {
   }
 
   useEffect(() => {
-    // fetchUser()
 
     if(!user){
       const thisuser = localStorage.getItem('user');

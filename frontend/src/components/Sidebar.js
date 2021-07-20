@@ -10,7 +10,6 @@ const Side = props => {
         <div style={{'paddingTop': '75px'}}>
             <Nav className="col-md-12 d-none d-md-block bg-light sidebar"
             activeKey="/home"
-            // onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >
                 <div className="sidebar-sticky"></div>
                 <ul>
@@ -39,11 +38,6 @@ const Side = props => {
                 <Link to="/myinfo">My Info</Link>
             </li>
             </ul>
-            {/* <Nav.Item>
-                <Nav.Link eventKey="disabled" disabled>
-                Disabled
-                </Nav.Link>
-            </Nav.Item> */}
             </Nav>
           
         </div>

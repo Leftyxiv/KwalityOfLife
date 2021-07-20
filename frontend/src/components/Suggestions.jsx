@@ -7,7 +7,6 @@ import './Suggestion.css';
 
 const Suggestions = (props) => {
   const [suggestion, setSuggestion] = useState("");
-  // const [user, setUser] = useState(-1)
   
   const onSubmit = async (e) => {
     e.preventDefault();

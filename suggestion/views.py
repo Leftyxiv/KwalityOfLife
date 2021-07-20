@@ -31,6 +31,5 @@ def send_suggestion(request, *args, **kwargs):
   serializer = SuggestionSerializer(data=request.data)
   if serializer.is_valid():
     for user in users:
-      # mess_obj = { 'sender': request.user, 'receiver': user, 'content': f"---SUGGESTION - BOX--- {serializer.data['content']} "}
       Message.objects.create(sender=request.user, receiver=user, content=f"---SUGGESTION - BOX--- {serializer.data['content']}")
   return Response(serializer.data)

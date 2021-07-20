@@ -49,9 +49,6 @@ def get_outbox(request, username, *args, **kwargs):
   cleaned = []
   user = CustomUser.objects.get(username=username)
   messages = Message.objects.filter(sender=user).exclude(content__contains='SUGGESTION')
-  # for message in messages:
-    # if message.content.find('SUGGESTION'):
-    #   del message
   serializer = DirectMessageApiSerializer(messages, many=True)
   data = serializer.data
   if data:

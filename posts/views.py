@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework import status
 
 from .models import Post
 from .forms import PostForm, PostURL
@@ -14,7 +13,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from notifications.models import Notifications
 
-from api.serializers import CommentSerializer, CommentApiViewSerializer, PostApiSerializer
+from api.serializers import CommentApiViewSerializer, PostApiSerializer
 
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))

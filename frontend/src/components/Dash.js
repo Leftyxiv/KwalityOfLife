@@ -38,7 +38,6 @@ const Dash = props => {
                     <Switch>
           <Route exact path="/" render={() => <Landing />} />
           <Route exact path="/feed" render={() => <PostList />} />
-          {/* <Route exact path="/signup" render={() => <SignupForm />} /> */}
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
           
