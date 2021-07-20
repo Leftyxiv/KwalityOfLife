@@ -6,7 +6,6 @@ import './PostList.css';
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
-  // const [filter, setFilter] = useState('all');
 
   const fetchData = async () => {
     const res = await axios.get("http://127.0.0.1:8000/api/post");
@@ -21,7 +20,6 @@ const PostList = () => {
   return (
     <div className="cardDiv">
       {posts.map(post => <PostCard key={post.id} post={post} />)}
-      {/* filter(post => post.purpose === filter).filter(post => post.type).map() */}
     </div>
   )
 }

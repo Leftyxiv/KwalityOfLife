@@ -13,6 +13,7 @@ const PostDetail = ({postId}) => {
 
   const fetchPost = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/${postId}/`);
+    console.log(res)
     setPost(res.data);
     fetchUser(res.data.user)
     console.log(user)
@@ -35,6 +36,8 @@ const PostDetail = ({postId}) => {
         <img src={post.product_image} style={{'maxWidth': "20vw"}}/>
         <br />
         <Link to={`/user/${user.id}`}>{ user.username }</Link>
+        <br />
+        <a href={ post.company_website }>{ post.company_website }</a>
         <br />
         { post.description }
       </div>

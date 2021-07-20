@@ -12,8 +12,7 @@ const CreatePost = (props) => {
   const [productImg, setProduct] = useState("");
   const [description, setDescription] = useState("");
 
-  // const values = document.getElementById('options')
-  // console.log(values.value);
+  
   const fetchUser = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/users/getme/${props.auth.user['username']}/`);
     setUser(res.data);
@@ -58,10 +57,8 @@ const CreatePost = (props) => {
     setProduct("");
     setDescription("");
     setCompany("");
-    // dispatch(push('/feed'))
   }
-  // fetchUser();
-  // const 
+  
   const handleImageChange = (e) => {
     e.preventDefault()
     console.log(e.target.files[0]['name'])
@@ -70,18 +67,13 @@ const CreatePost = (props) => {
   return (
     <div style={{ 'paddingTop': '150px', 'width': '30vw', 'display': 'flex', 'justifyContent': 'center' }}>
       <form onSubmit={onSubmit} id='createFormDiv' style={{'position': 'relative', 'left': '20vw', 'border': '1px solid rgb(211,211,211, .5)'}}>
-      {/* style={{'width': '30vw'}}> */}
         <div className='form-group'>
-        {/* <label for='title'>Title: </label> */}
         <input type='text' id="title" className='form-control' placeholder='title' value={title} onChange={e => setTitle(e.target.value)}/>
         <br />
-        {/* <label>Company Website: </label> */}
         <input type='text' id="company_website" className='form-control' placeholder='company website' value={company} onChange={e => setCompany(e.target.value)}/>
         <br />
-        {/* <label>Product Image: </label> */}
         <input type="file" id="image" className='form-control-file' accept="image/png, image/jpg" onChange={handleImageChange} />
         <br />
-        {/* <label>Description: </label> */}
         <textarea className='form-control' placeholder='Description...' value={description} id="description" onChange={(e) => setDescription(e.target.value)} />
         <br />
         <label>Assists with: </label>
@@ -90,23 +82,13 @@ const CreatePost = (props) => {
           <option value="PHYSICAL">Physical</option>
           <option value="SENSORY">Sensory</option>
           <option value="MENTAL">Physical</option>
-          {/* ("INTELLECTUAL", "Intellectual"),
-    ("PHYSICAL", "Physical"),
-    ("SENSORY", "Sensory"),
-    ("MENTAL", "Mental")] */}
-        {/* ("EDUCATION", "Education"),
-    ("ENTERTAINMENT", "Entertainment"),
-    ("CLOTHING", "Clothing"),
-    ("CUISINE&DINING", "Cuisine&Dining"),
-    ("TRANSPORTATION", "Transportation"),
-    ("HOBBY", "Hobby"), */}
         </select>
     <br />
     <label>Purpose: </label>
         <select id="purposes">
           <option value="EDUCATION">Education</option>
-          <option value="ENTERTAINMENT">Physical</option>
-          <option value="CLOTHING">Sensory</option>
+          <option value="ENTERTAINMENT">Entertainment</option>
+          <option value="CLOTHING">Clothing</option>
           <option value="CUISINEDINING">Cuisine & Dining</option>
           <option value="TRANSPORTATION">Transportation</option>
           <option value="HOBBY">Hobby</option>

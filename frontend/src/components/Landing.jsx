@@ -1,7 +1,6 @@
 import React from 'react'
 
 import './Landing.css';
-import LoginForm from './LoginForm';
 
 const Landing = (props) => {
   const Component = props.Component;
