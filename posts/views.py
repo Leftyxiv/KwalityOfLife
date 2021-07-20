@@ -14,7 +14,7 @@ from comment.models import Comment
 from comment.forms import AddComment
 from notifications.models import Notifications
 
-from api.serializers import CommentSerializer, CommentApiViewSerializer, PostApiSerializer
+from api.serializers import CommentSerializer, CommentApiViewSerializer, PostApiSerializer, PostUpdateSerializer
 
 def redirect(request):
   return request.GET.get('next', reverse('homepage'))
@@ -118,7 +118,18 @@ class PostAPIView(APIView):
     post.delete()
     return Response(status=200)
 
-  def patch(self, request, *args, **kwargs):
-    print(request.data)
-    return Response(status=200)
+@api_view(['POST'])
+def edit_post_api_view(request, post_id, *args, **kwargs):
+    post = Post.objects.get(id=post_id)
+    serializer = PostUpdateSerializer(data=request.data)
+    if serializer.is_valid():
+      post.title = serializer.data['title']
+      post.company_website = serializer.data['company_website']
+      post.description = serializer.data['description']
+      post.save()
+      return Response(serializer.data, status=200)
+    else:
+      print(serializer.errors)
+    return Response(status=400)
+
 

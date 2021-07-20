@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const PostEdit = (props) => {
   const [title, setTitle] = useState("");
@@ -8,26 +10,45 @@ const PostEdit = (props) => {
   const [img, setImg] = useState("");
   const [description, setDescription] = useState("");
 
-  console.log(props)
+    const fetchPostData = async () => {
+      const res = await axios.get(`http://127.0.0.1:8000/api/post/${props.match.params.postId}/`, {
+        headers: {
+      //  'Authorization': `Token ${props.auth.user.token}`
+     }});
+    //  console.log(res.data)
+     setTitle(res.data.title)
+     setWebsite(res.data.company_website)
+     setDescription(res.data.description)
+    //  setImg(res.data.product_image)
+    }
+    useEffect(() => {
+      fetchPostData()
+      return () => {
+      }
+    }, [])
     const handleImageChange = (e) => {
     e.preventDefault()
     setImg(e.target.files[0])
   }
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
-    if(img) {
-    formData.append('avatar', img, img['name'])
-    }
+    // if(img) {
+    // formData.append('product_image', img, img['name'])
+    // }
     formData.append('title', title)
     formData.append('company_website', website)
     formData.append('description', description)
     formData.append('id', props.match.params.postId)
-  const res =  axios.patch(`http://127.0.0.1:8000/api/post/${props.match.params.id}`, formData, {
+  const res = await axios.post(`http://127.0.0.1:8000/post/${props.match.params.postId}/edit/`, formData, {
      headers: {
     'content-type': 'multipart/form-data',
-    'Authorization': `Token ${props.user.token}`
+    // 'Authorization': `Token ${props.auth.user.token}`
   }});
+  console.log(res.status)
+  if(res.status === 200){
+    toast.success('Post edited! Please navigate back to the homepage!')
+  }
 }
 
   return (
@@ -50,6 +71,7 @@ const PostEdit = (props) => {
         <input type='submit' className='btn btn-dark' />
         </div>
         </form>
+        <Link style={{'position': 'relative', 'left': '5vw', 'top': '60vh'}} to={`/post/${props.match.params.postId}`}><button className='btn-primary'>Back!</button></Link>
     </div>
   )
 }

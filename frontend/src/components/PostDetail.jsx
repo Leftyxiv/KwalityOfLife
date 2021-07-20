@@ -40,6 +40,8 @@ const PostDetail = ({postId}) => {
         <br />
         { post.description }
       </div>
+      <Link to={`/post/${postId}/edit`}><button className='btn-dark'>Edit</button></Link>
+      <br />
       <button className='btn-danger' onClick={deletePost}>Delete</button>
       <div>
       <br />
