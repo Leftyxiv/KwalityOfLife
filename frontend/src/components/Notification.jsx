@@ -23,7 +23,7 @@ const Notification = ({ key, user, text }) => {
   return (
     <div>
       <img src={thisUser.avatar} height="50px" width="50px" /> <b>{ thisUser.username } </b> -- { text } 
-      <button onClick={deleteNotification}>X</button>
+      <button className='btn-danger' onClick={deleteNotification}>X</button>
     </div>
   )
 }

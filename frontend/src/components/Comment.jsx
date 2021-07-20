@@ -44,9 +44,9 @@ const Comment = (props) => {
       <br />
       { props.body }
       <br />
-      <button onClick={addLike}>Likes { likes }</button> <button onClick={addDislike}>Dislikes { dislikes }</button>
+      <button className='btn-success' onClick={addLike}>Likes { likes }</button> <button className='btn-warning' onClick={addDislike}>Dislikes { dislikes }</button>
       </div>
-      <button onClick={deleteComment}>X</button>
+      <button className='btn-danger' onClick={deleteComment}>X</button>
     </div>
   )
 }
