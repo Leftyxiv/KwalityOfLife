@@ -122,6 +122,8 @@ def author_detail(request, author_id: int):
 def get_my_id(request, username, *args, **kwargs):
     """ this function takes in a username as a string and returns the user object"""
     user = CustomUser.objects.get(username=username)
+    if not user:
+        return Response('user not found', status=404)
     serializer = CustomUserSerializer(user)
     return Response(serializer.data, status=200)
 
@@ -131,19 +133,11 @@ def get_all_users(request, *args, **kwargs):
     name_list = []
     qs = CustomUser.objects.all()
     for user in qs:
-        # print(user.id)
         serializer = CustomUserSerializer(user)
         name_list.append({'id': serializer.data['id'], 'username': serializer.data['username']})
     return Response(name_list, status=200)
 
-# @api_view(['DELETE'])
-# def delete_dm(request, pk):
-#   try:
-#     user = CustomUser.objects.get(pk=pk)
-#     user.delete()
-#   except:
-#     return Response({}, status=404)
-#   return Response({}, status=201)
+
 class UserAPIView(APIView):
   parser_classes = (MultiPartParser, FormParser)
 
@@ -155,44 +149,15 @@ class UserAPIView(APIView):
   def post(self, request, *args, **kwargs):
     user = request.user
     serializer = UserUpdateSerializer(user, data=request.data)
-    # print(request.data)
-    # user = request.user
-    print(serializer.initial_data)
     if serializer.is_valid():
-        # serializer.avatar = serializer.validated_data['avatar']
-        # print(serializer.data)
-        # print(request.data['avatar'])
-        # user = request.user
         serializer.user = user
-        print(user.avatar)
         serializer.save()
         return Response(serializer.data, status=201)
     else:
-        print(serializer.errors)
         return Response(serializer.errors, status=400)
 
-#   def post(self, request, *args, **kwargs):
-#     serializer = UserUpdateSerializer(data=request.data)
-#     # print(request.data)
-#     # user = request.user
-#     print(serializer.initial_data)
-#     if serializer.is_valid():
-#         # serializer.avatar = serializer.validated_data['avatar']
-#         print(serializer.validated_data)
-#         # print(request.data['avatar'])
-#         user = request.user
-#         serializer.user = user
-#         # del serializer.data['username']
-#         # print(user.avatar)
-#         serializer.save()
-#         return Response(serializer.data, status=201)
-#     else:
-#       print(serializer.errors)
-#       return Response(serializer.errors, status=400)
-    
+
     def delete(self, request, pk):
         dm = self.get_objects(pk)
         dm.delete()
         return Response(status=200)
-    
-

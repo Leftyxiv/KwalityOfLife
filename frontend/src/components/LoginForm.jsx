@@ -40,7 +40,7 @@ const LoginForm = (props) => {
         {/* <label style={{'color': 'black'}}>Password </label> */}
       <input type='password' className='form-control' placeholder='Password'  value={pass} onChange={(e) => setPass(e.target.value)}></input>
       <br />
-    <input type='submit' className='btn btn-primary btn-lg' />
+    <input type='submit' className='btn btn-dark btn-lg' />
         </div>
   </form>
     </div>

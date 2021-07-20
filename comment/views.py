@@ -93,6 +93,8 @@ def create_comment(request, post_id, *args, **kwargs):
 @api_view(['GET'])
 def api_like(request, comment_id, *args, **kwargs):
     comment = Comment.objects.get(id=comment_id)
+    if not comment:
+        return Response('Comment not found', status=404)
     comment.likes += 1
     comment.save()
     serializer = CommentApiViewSerializer(comment)
@@ -101,6 +103,8 @@ def api_like(request, comment_id, *args, **kwargs):
 @api_view(['GET'])
 def api_dislike(request, comment_id, *args, **kwargs):
     comment = Comment.objects.get(id=comment_id)
+    if not comment:
+        return Response('Comment not found', status=404)
     comment.dislikes += 1
     comment.save()
     serializer = CommentApiViewSerializer(comment)

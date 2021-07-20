@@ -22,6 +22,8 @@ def notification_view(request, *args, **kwargs):
 @api_view(['GET'])
 def get_notifications(request, username, *args, **kwargs):
   user = CustomUser.objects.get(username=username)
+  if not user:
+    return Response('user not found', status=404)
   notifications = Notifications.objects.filter(user=user)
   serializer = NotificationsApiSerializer(notifications, many=True)
   data = serializer.data
