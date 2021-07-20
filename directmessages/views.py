@@ -37,6 +37,8 @@ class FormView(View):
 @api_view(['GET'])
 def get_inbox(request, username, *args, **kwargs):
   user = CustomUser.objects.get(username=username)
+  if not user:
+    return Response('user not found', status=404)
   messages = Message.objects.filter(receiver=user)
   serializer = DirectMessageApiSerializer(messages, many=True)
   data = serializer.data
@@ -48,6 +50,8 @@ def get_inbox(request, username, *args, **kwargs):
 def get_outbox(request, username, *args, **kwargs):
   cleaned = []
   user = CustomUser.objects.get(username=username)
+  if not user:
+      return Response('user not found', status=404)
   messages = Message.objects.filter(sender=user).exclude(content__contains='SUGGESTION')
   serializer = DirectMessageApiSerializer(messages, many=True)
   data = serializer.data
@@ -58,9 +62,9 @@ def get_outbox(request, username, *args, **kwargs):
 @api_view(['POST'])
 def send_dm(request, recipient, *arg, **kwargs):
   recipient = CustomUser.objects.get(id=recipient)
-  print(recipient)
+  if not recipient:
+    return Response('user not found', status=404)
   serializer = DirectMessageApiSerializer(data=request.data)
-  print(serializer.is_valid())
   if serializer.is_valid():
     serializer.save()
     return Response(serializer.data, status=201)

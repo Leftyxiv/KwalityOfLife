@@ -96,6 +96,8 @@ def author_detail(request, author_id: int):
 def get_my_id(request, username, *args, **kwargs):
     """ this function takes in a username as a string and returns the user object"""
     user = CustomUser.objects.get(username=username)
+    if not user:
+        return Response('user not found', status=404)
     serializer = CustomUserSerializer(user)
     return Response(serializer.data, status=200)
 
@@ -120,19 +122,15 @@ class UserAPIView(APIView):
   def post(self, request, *args, **kwargs):
     user = request.user
     serializer = UserUpdateSerializer(user, data=request.data)
-    print(serializer.initial_data)
     if serializer.is_valid():
         serializer.user = user
-        print(user.avatar)
         serializer.save()
         return Response(serializer.data, status=201)
     else:
-        print(serializer.errors)
         return Response(serializer.errors, status=400)
 
-  def delete(self, request, pk):
+
+    def delete(self, request, pk):
         dm = self.get_objects(pk)
         dm.delete()
         return Response(status=200)
-    
-
