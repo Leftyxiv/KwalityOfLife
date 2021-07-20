@@ -32,7 +32,7 @@ const Message = ({ message, inbox, auth }) => {
   return (
     <div>
       <img src={user.avatar} height="50px" width="50px" /> <b>{ user.username } </b> -- { message.content } -- Message sent at { message.created_at } {inbox === true ? `from ${ user.username }`: "" }
-      <button onClick={deleteMessage}>X</button>
+      <button className='btn-danger' onClick={deleteMessage}>X</button>
     </div>
   )
 }
