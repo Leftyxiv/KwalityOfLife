@@ -36,6 +36,8 @@ const PostDetail = ({postId}) => {
         <br />
         <Link to={`/user/${user.id}`}>{ user.username }</Link>
         <br />
+        { post.company_website ? <a href={ post.company_website }>Product Website</a> : "" }
+        <br />
         { post.description }
       </div>
       <button className='btn-danger' onClick={deletePost}>Delete</button>

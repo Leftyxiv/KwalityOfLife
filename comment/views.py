@@ -72,21 +72,6 @@ def create_comment(request, post_id, *args, **kwargs):
                 if user_to_notify:
                     Notifications.objects.create(text=serializer.validated_data['body'], user=user_to_notify)
             serializer.save()
-
-        # if form.is_valid():
-        #     data = form.cleaned_data
-        #     if '@' in data['body']:
-        #         pattern = '@(\w+)'
-        #         result = re.findall(pattern, data['body'])[0]
-        #         user_to_notify = CustomUser.objects.get(username=result)
-        #         if user_to_notify:
-        #             Notifications.objects.create(text=data['body'], user=user_to_notify)
-        #     Comment.objects.create(
-        #         body=data['body'],
-        #         post=post,
-        #         user=user
-        #     )
-        # return HttpResponseRedirect(f'/post/{post.id}/')
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 

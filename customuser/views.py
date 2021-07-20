@@ -52,30 +52,7 @@ def login_view(request):
     form = LoginForm()
     return render(request, "form.html", {'form' : form})
 
-# User Edit View
-# def customUserChange_view(request, *args, **kwargs):
-#     item = request.user
 
-#     if request.method == "POST":
-#         form = CustomUserChangeForm(request.POST)
-
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             # item.username = data['username']
-#             item.email = data['email']
-#             item.first_name = data['first_name']
-#             item.last_name = data['last_name']
-#             item.save()
-#             # return HttpResponseRedirect('')
-
-#     form = CustomUserChangeForm(initial={
-#         'username': item.username,
-#         'email' : item.email,
-#         'first_name' : item.first_name,
-#         'last_name' : item.last_name,
-
-#     })
-#     return render(request, "form.html", {"form": form})
 
 
 class CustomUserChangeView(LoginRequiredMixin, View):

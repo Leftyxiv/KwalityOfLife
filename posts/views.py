@@ -118,3 +118,7 @@ class PostAPIView(APIView):
     post.delete()
     return Response(status=200)
 
+  def patch(self, request, *args, **kwargs):
+    print(request.data)
+    return Response(status=200)
+

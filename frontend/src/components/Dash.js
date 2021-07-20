@@ -19,6 +19,7 @@ import CreatePost from './CreatePost';
 import Suggestions from './Suggestions';
 import ProfilePage from './ProfilePage';
 import MyInfo from './MyInfo';
+import PostEdit from './PostEdit';
 
 const Dash = props => {
   let name = ['','']
@@ -41,6 +42,7 @@ const Dash = props => {
           {/* <Route exact path="/signup" render={() => <SignupForm />} /> */}
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/post/:postId" component={PostWrapper} />
+          <Route exact path="/post/:postId/edit" component={PostEdit} />
           
           <Route exact path="/inbox" render={() => <Inbox name={name[1]} />} />
           <Route exact path="/outbox" render={() => <Outbox name={name[1]} />} />
