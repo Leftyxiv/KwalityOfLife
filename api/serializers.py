@@ -119,3 +119,8 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'last_name',
             'email',
         ]
+
+class PostUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title', 'company_website', 'description']

@@ -69,7 +69,6 @@ def create_comment(request, post_id, *args, **kwargs):
                 if user_to_notify:
                     Notifications.objects.create(text=serializer.validated_data['body'], user=user_to_notify)
             serializer.save()
-
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 

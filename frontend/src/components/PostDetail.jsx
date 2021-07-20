@@ -37,10 +37,12 @@ const PostDetail = ({postId}) => {
         <br />
         <Link to={`/user/${user.id}`}>{ user.username }</Link>
         <br />
-        <a href={ post.company_website }>{ post.company_website }</a>
+        { post.company_website ? <a href={ post.company_website }>Product Website</a> : "" }
         <br />
         { post.description }
       </div>
+      <Link to={`/post/${postId}/edit`}><button className='btn-dark'>Edit</button></Link>
+      <br />
       <button className='btn-danger' onClick={deletePost}>Delete</button>
       <div>
       <br />

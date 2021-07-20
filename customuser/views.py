@@ -52,6 +52,8 @@ def login_view(request):
     return render(request, "form.html", {'form' : form})
 
 
+
+
 class CustomUserChangeView(LoginRequiredMixin, View):
     def get(self, request):
         item = request.user

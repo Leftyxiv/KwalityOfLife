@@ -20,7 +20,7 @@ from api.urls import urlpatterns as api_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, PostAPIView
+from posts.views import PostHomeView, PostFormView, post_detail_view, delete_post, get_comments, PostAPIView, edit_post_api_view
 from customuser.views import customUserCreation_view, login_view, CustomUserChangeView, loggedOut_view, author_detail, get_my_id, get_all_users, UserAPIView
 from notifications.views import notification_view, get_notifications
 from comment.views import CreateCommentView, like_view, dislike_view, create_comment, api_like, api_dislike
@@ -44,6 +44,7 @@ urlpatterns = [
     path('addpost/', PostFormView.as_view()),
     path('post/create/', csrf_exempt(PostAPIView.as_view())),
     path('post/<int:post_id>/', post_detail_view),
+    path('post/<int:post_id>/edit/', edit_post_api_view),
     path('post/<int:post_id>/comments/', get_comments),
     # All Author's posts together
     path('author/<int:author_id>/', author_detail),
