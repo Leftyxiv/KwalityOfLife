@@ -26,9 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [ '127.0.0.1:8000', '*']
+if DEBUG:
+    ALLOWED_HOSTS = [ '127.0.0.1:8000', '*']
+else:
+    ALLOWED_HOSTS = ['159.203.169.42']
 
 LOGIN_URL = '/login/'
 
@@ -149,3 +152,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'uploads'
