@@ -8,7 +8,7 @@ const CommentList = (props) => {
 
   const fetchMessages = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/post/${props.postId}/comments/`);
-      setMessages(res.data);
+      setMessages(res.data.reverse());
 }
   useEffect(() => {
     fetchMessages()

@@ -87,7 +87,7 @@ class PostForm(ModelForm):
     model = Post
     fields = ['title', 'company_website', 'product_image', 'description' ]
 
-# admin interface
+# admin interface - functions pulled from each model admin page
 """
 admin.site.register(Comment)
 admin.site.register(CustomUser, CustomUserAdmin)

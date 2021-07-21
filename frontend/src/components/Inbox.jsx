@@ -16,7 +16,7 @@ const Inbox = (props) => {
     // setUser(thisuser['username']);
     // const messages = await axios.get(`http://127.0.0.1:8000/api/directmessages/`)
     const messages = await axios.get(`http://127.0.0.1:8000/messages/${props.name}`)
-    setInbox(messages.data)
+    setInbox(messages.data.reverse())
   }
 
   // const fetchUser = async () => {

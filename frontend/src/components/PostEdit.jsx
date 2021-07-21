@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const PostEdit = (props) => {
   const [title, setTitle] = useState("");
   const [website, setWebsite] = useState("");
-  const [img, setImg] = useState("");
   const [description, setDescription] = useState("");
 
     const fetchPostData = async () => {
@@ -28,7 +27,7 @@ const PostEdit = (props) => {
     }, [])
     const handleImageChange = (e) => {
     e.preventDefault()
-    setImg(e.target.files[0])
+    // setImg(e.target.files[0])
   }
     const onSubmit = async (e) => {
     e.preventDefault()
@@ -63,8 +62,8 @@ const PostEdit = (props) => {
         <input type='text' id="company_website" className='form-control' placeholder='company website' value={website} onChange={e => setWebsite(e.target.value)}/>
         <br />
         {/* <label>Product Image: </label> */}
-        <input type="file" id="image" className='form-control-file' accept="image/png, image/jpg" onChange={handleImageChange} />
-        <br />
+        {/* <input type="file" id="image" className='form-control-file' accept="image/png, image/jpg" onChange={handleImageChange} />
+        <br /> */}
         {/* <label>Description: </label> */}
         <textarea className='form-control' placeholder='Description...' value={description} id="description" onChange={(e) => setDescription(e.target.value)} />
         <br />

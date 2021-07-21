@@ -44,7 +44,7 @@ const DirectMessage = (props) => {
       }
     }
     if(value < 0){
-      toast.error('User not found');
+      // toast.error('User not found');
     } else {
       try {
       await axios.post(`http://127.0.0.1:8000/messages/dm/${value}/`, {

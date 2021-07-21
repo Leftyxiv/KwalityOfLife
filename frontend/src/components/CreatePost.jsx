@@ -105,8 +105,8 @@ const CreatePost = (props) => {
     <label>Purpose: </label>
         <select id="purposes">
           <option value="EDUCATION">Education</option>
-          <option value="ENTERTAINMENT">Physical</option>
-          <option value="CLOTHING">Sensory</option>
+          <option value="ENTERTAINMENT">Entertainment</option>
+          <option value="CLOTHING">Clothing</option>
           <option value="CUISINEDINING">Cuisine & Dining</option>
           <option value="TRANSPORTATION">Transportation</option>
           <option value="HOBBY">Hobby</option>
