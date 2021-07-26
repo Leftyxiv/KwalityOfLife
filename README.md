@@ -20,6 +20,16 @@ npm install
 
 ## Usage
 
+Open up two terminals.  In the first one navigate to the root directory for this project and type 
+```
+python manage.py runserver
+```
+
+In the second terminal navigate to the front end directory and type
+```
+npm start
+```
+
 Once both servers are running, navigate to http://localhost:3000/ in your browser
 
 ## Contributing
