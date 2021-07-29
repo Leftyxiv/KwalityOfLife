@@ -9,4 +9,3 @@ class Notifications(models.Model):
 
   def __str__(self):
     return f"notifying {self.user}"
-
